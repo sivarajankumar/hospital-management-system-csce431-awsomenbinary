@@ -1,0 +1,7 @@
+C:\Users\Grant\AppData\Local\Temporary Projects\MySql_Login\bin\Debug\MySql_Login.exe
+C:\Users\Grant\AppData\Local\Temporary Projects\MySql_Login\bin\Debug\MySql_Login.pdb
+C:\Users\Grant\AppData\Local\Temporary Projects\MySql_Login\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Grant\AppData\Local\Temporary Projects\MySql_Login\obj\x86\Debug\MySql_Login.exe
+C:\Users\Grant\AppData\Local\Temporary Projects\MySql_Login\obj\x86\Debug\MySql_Login.pdb
+C:\Users\Grant\documents\visual studio 2010\Projects\MySql_Login\MySql_Login\obj\x86\Debug\MySql_Login.exe
+C:\Users\Grant\documents\visual studio 2010\Projects\MySql_Login\MySql_Login\obj\x86\Debug\MySql_Login.pdb
