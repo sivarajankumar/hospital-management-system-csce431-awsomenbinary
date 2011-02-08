@@ -1,1 +1,0 @@
-C:\Users\Grant\Documents\Visual Studio 2010\Projects\SqlLoginSample\obj\Debug\SqlLoginSample.csproj.ResolveComReference.cache
