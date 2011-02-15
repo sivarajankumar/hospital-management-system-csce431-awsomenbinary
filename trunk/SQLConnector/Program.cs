@@ -14,7 +14,6 @@ namespace SQLConnector{
             
             if(!c.userExists("test1")){
                 c.addUser("test1", "ppp");
-                Console.WriteLine("Error adding user");
             }
             if (!c.userExists("test1")) {
                 Console.WriteLine("Error adding user");
