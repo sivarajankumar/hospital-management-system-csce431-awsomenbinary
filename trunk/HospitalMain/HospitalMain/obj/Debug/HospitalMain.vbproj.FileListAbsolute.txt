@@ -1,0 +1,10 @@
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\bin\HospitalMain.dll
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\bin\HospitalMain.pdb
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\bin\HospitalMain.xml
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\obj\Debug\HospitalMain.Resources.resources
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\obj\Debug\HospitalMain.dll
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\obj\Debug\HospitalMain.xml
+C:\Users\Grant\Documents\Visual Studio 2010\Projects\HospitalMain\HospitalMain\obj\Debug\HospitalMain.pdb
