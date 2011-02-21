@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace SQLConnector{
 
-    class SQLConnector{
+    public class SQLConnector{
         private MySqlConnection connection;
         private string conn_str;
         private bool is_connected;
