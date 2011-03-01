@@ -15,6 +15,23 @@ namespace Hospital.Controllers
             SQLConnector.SQLConnector c = new SQLConnector.SQLConnector("database-new.cse.tamu.edu", "djnemec-hosp", "djnemec", "csce431");
             c.connect();
 
+            if (c.userExists("dan") && c.verifyUser("dan", "pass"))
+            {
+                ViewData["Message"]+="User exists!<br/>";
+            }
+
+            if (!c.userExists("test1"))
+            {
+                c.addUser("test1", "ppp");
+            }
+            if (!c.userExists("test1"))
+            {
+                Console.WriteLine("Error adding user");
+            }
+            c.disconnect();
+            /*SQLConnector.SQLConnector c = new SQLConnector.SQLConnector("database-new.cse.tamu.edu", "djnemec-hosp", "djnemec", "csce431");
+            c.connect();
+
             bool exists = c.userExists("dan");
 
             if(exists)
@@ -22,7 +39,7 @@ namespace Hospital.Controllers
             else
                 ViewData["Message"] = "Welcome, dan. Your user does not exist.";
 
-            c.disconnect();
+            c.disconnect();*/
 
             return View();
         }
