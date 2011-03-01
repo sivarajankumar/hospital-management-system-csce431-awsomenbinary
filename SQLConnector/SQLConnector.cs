@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Web;
 using MySql.Data.MySqlClient;
 
 namespace SQLConnector{
 
-    public class SQLConnector{
+    public class SQLConnector {
         private MySqlConnection connection;
         private string conn_str;
         private bool is_connected;
