@@ -314,6 +314,51 @@ namespace Hospital.Tests.Controllers
             Assert.AreEqual(10, viewResult.ViewData["PasswordLength"]);
         }
 
+        //ryan, not sure if right
+        [TestMethod]
+        public void Register_PatientInformation()
+        {
+            AccountController controller = GetAccountController();
+            PatientInfoModel model = new PatientInfoModel()
+            {
+                Name = "someName",
+                Age = 21,
+                Sex = "M/F",
+                MailingAddress = "address",
+                PhoneNumber = "281-389-2662",
+                Email = "ryanjones@tamu.edu",
+                CreditCardName = "ryan z jones",
+                CreditCardType = "Visa",
+                CreditCardNumber = "1234567890",
+                CreditCardSecurityNumber = "000",
+                InsuranceCompany = "blue cross",
+                InsurancePolicyNumber = "0000001010",
+                InsurancePolicyHolder = "someguy",
+                MartialStatus = "single",
+                SSN = "123-45-6789",
+                DOB = "05/07/1990",
+                Operations = "arm removed",
+                Allergies = "everything",
+                Medication = "all",
+                PastDoctor = "guy on tv",
+                FamilyHistory = "dont know",
+                EmergencyContactName = "mike",
+                EmergencyContactNumber = "123-123-1213",
+                RecentTests = "hit on head",
+                LatestBloodPressure = "100000"
+
+            };
+
+            ActionResult result = controller.PatientInfo(model);
+            Assert.IsInstanceOfType(result, typeof(RedirectToRouteResult));
+            RedirectToRouteResult redirectResult = (RedirectToRouteResult)result;
+            Assert.AreEqual("Home", redirectResult.RouteValues["controller"]);
+            Assert.AreEqual("Index", redirectResult.RouteValues["action"]);
+        }
+
+
+
+
         private static AccountController GetAccountController()
         {
             AccountController controller = new AccountController()

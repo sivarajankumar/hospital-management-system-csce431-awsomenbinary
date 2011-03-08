@@ -70,6 +70,110 @@ namespace Hospital.Models
         [DisplayName("Confirm password")]
         public string ConfirmPassword { get; set; }
     }
+
+    //ryan, not sure if right
+    public class PatientInfoModel
+    {
+        [Required]
+        [DisplayName("Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [DisplayName("Age")]
+        public int Age { get; set; }
+
+        [Required]
+        [DisplayName("Sex")]
+        public string Sex { get; set; }
+
+        [Required]
+        [DisplayName("Mailing Address")]
+        public string MailingAddress { get; set; }
+
+        [Required]
+        [DisplayName("Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [DisplayName("Email address")]
+        public string Email { get; set; }
+
+        [Required]
+        [DisplayName("Credit Card Name")]
+        public string CreditCardName { get; set; }
+        [Required]
+        [DisplayName("Credit Card Type")]
+        public string CreditCardType { get; set; }
+        [Required]
+        [DisplayName("Credit Card Number")]
+        public string CreditCardNumber { get; set; }
+        [Required]
+        [DisplayName("Credit Card Security Number")]
+        public string CreditCardSecurityNumber { get; set; }
+
+        [Required]
+        [DisplayName("Insurance Company")]
+        public string InsuranceCompany { get; set; }
+        [Required]
+        [DisplayName("Insurance Policy Number")]
+        public string InsurancePolicyNumber { get; set; }
+        [Required]
+        [DisplayName("Insurance Policy Holder")]
+        public string InsurancePolicyHolder { get; set; }
+
+        [Required]
+        [DisplayName("Martial Status")]
+        public string MartialStatus { get; set; }
+
+        [Required]
+        [DisplayName("Social Security Number")]
+        public string SSN { get; set; }
+
+        [Required]
+        [DisplayName("Date Of Birth")]
+        public string DOB { get; set; }
+
+        [Required]
+        [DisplayName("Recent Operations")]
+        public string Operations { get; set; }
+        [Required]
+        [DisplayName("Allergies")]
+        public string Allergies { get; set; }
+        [Required]
+        [DisplayName("Recent Medication")]
+        public string Medication { get; set; }
+        [Required]
+        [DisplayName("Past Doctor")]
+        public string PastDoctor { get; set; }
+        [Required]
+        [DisplayName("Family History")]
+        public string FamilyHistory { get; set; }
+        [Required]
+        [DisplayName("Emergency Contact Name")]
+        public string EmergencyContactName { get; set; }
+        [Required]
+        [DisplayName("Emergency Contact Number")]
+        public string EmergencyContactNumber { get; set; }
+        [Required]
+        [DisplayName("Recent Test/Exams")]
+        public string RecentTests { get; set; }
+        [Required]
+        [DisplayName("Latest Blood Pressure")]
+        public string LatestBloodPressure { get; set; }
+       
+
+
+        
+
+
+
+
+
+
+
+    }
+
     #endregion
 
     #region Services
