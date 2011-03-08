@@ -314,6 +314,8 @@ namespace Hospital.Tests.Controllers
             Assert.AreEqual(10, viewResult.ViewData["PasswordLength"]);
         }
 
+
+
         //ryan, not sure if right
         [TestMethod]
         public void Register_PatientInformation()
