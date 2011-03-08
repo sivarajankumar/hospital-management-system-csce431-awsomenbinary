@@ -125,6 +125,7 @@ namespace Hospital.Models
 
             MembershipCreateStatus status;
             _provider.CreateUser(userName, password, email, null, null, true, null, out status);
+            Roles.AddUserToRole(userName, "patient");
             return status;
         }
 
