@@ -50,7 +50,7 @@ namespace Hospital.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Portal");
                     }
                 }
                 else

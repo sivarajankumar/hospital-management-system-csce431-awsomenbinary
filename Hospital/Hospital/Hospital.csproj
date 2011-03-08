@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -101,6 +102,12 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Views\Account\PatientInformation.aspx" />
+    <Content Include="Views\Portal\Administrator.aspx" />
+    <Content Include="Views\Portal\Doctor.aspx" />
+    <Content Include="Views\Portal\Index.aspx" />
+    <Content Include="Views\Portal\Nurse.aspx" />
+    <Content Include="Views\Portal\Patient.aspx" />
+    <Content Include="Views\Portal\Pharmacist.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
