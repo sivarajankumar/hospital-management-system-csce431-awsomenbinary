@@ -108,6 +108,21 @@ namespace Hospital.Controllers
             return View(model);
         }
 
+
+
+        //ryan, not sure if right
+        public ActionResult PatientInfo()
+        {
+            return View();
+        }
+        //ryan, not sure if right
+        public ActionResult PatientInfo(PatientInfoModel model)
+        {
+            return View(model);
+        }
+
+
+
         // **************************************
         // URL: /Account/ChangePassword
         // **************************************
