@@ -10,7 +10,10 @@
         Use the form below to create a new account. 
     </p>
     <p>
-        Passwords are required to be a minimum of <%: ViewData["PasswordLength"] %> characters in length.
+        Please enter all the desired information.
+    </p>
+    <p>
+        If a data entry is not applicable to you please enter n/a into the text box.
     </p>
 
     <% using (Html.BeginForm()) { %>
@@ -38,9 +41,11 @@
                 <div class="editor-label">
                     <%: Html.LabelFor(m => m.Password) %>
                 </div>
+
                 <div class="editor-field">
                     <%: Html.PasswordFor(m => m.Password) %>
-                    <%: Html.ValidationMessageFor(m => m.Password) %>
+                    <%: Html.ValidationMessageFor(m => m.Password) %>     
+                    <p>(Passwords are required to be a minimum of <%: ViewData["PasswordLength"] %> characters in length)</p>
                 </div>
                 
                 <div class="editor-label">
@@ -52,12 +57,30 @@
                 </div>
 
                 <div class="editor-label">
-                    <%: Html.LabelFor(m => m.Name) %>
+                    <%: Html.LabelFor(m => m.FirstName) %>
                 </div>
                 <div class="editor-field">
-                    <%: Html.TextBoxFor(m => m.Name) %>
-                    <%: Html.ValidationMessageFor(m => m.Name) %>
+                    <%: Html.TextBoxFor(m => m.FirstName) %>
+                    <%: Html.ValidationMessageFor(m => m.FirstName) %>
                 </div>
+
+                 <div class="editor-label">
+                    <%: Html.LabelFor(m => m.MiddleInital) %>
+                </div>
+                <div class="editor-field">
+                    <%: Html.TextBoxFor(m => m.MiddleInital)%>
+                    <%: Html.ValidationMessageFor(m => m.MiddleInital)%>
+                </div>
+
+                <div class="editor-label">
+                    <%: Html.LabelFor(m => m.LastName) %>
+                </div>
+                <div class="editor-field">
+                    <%: Html.TextBoxFor(m => m.LastName) %>
+                    <%: Html.ValidationMessageFor(m => m.LastName) %>
+                </div>
+
+
                 
                 <div class="editor-label">
                     <%: Html.LabelFor(m => m.Age) %>
@@ -73,14 +96,16 @@
                 <div class="editor-field">
                     <%: Html.TextBoxFor(m => m.Sex)%>
                     <%: Html.ValidationMessageFor(m => m.Sex) %>
+                    <p>(M/F/?)</p>
                 </div>
                 
                 <div class="editor-label">
                     <%: Html.LabelFor(m => m.MailingAddress)%>
                 </div>
                 <div class="editor-field">
-                    <%: Html.TextBoxFor(m => m.MailingAddress)%>
+                    <%: Html.TextAreaFor(m => m.MailingAddress)%>
                     <%: Html.ValidationMessageFor(m => m.MailingAddress)%>
+                    <p>(Address, City, State, Zip Code)</p>
                 </div>
 
                 <div class="editor-label">
@@ -89,6 +114,7 @@
                 <div class="editor-field">
                     <%: Html.TextBoxFor(m => m.PhoneNumber)%>
                     <%: Html.ValidationMessageFor(m => m.PhoneNumber)%>
+                    <p>(ex: 1234567890)</p>
                 </div>
 
 
@@ -99,6 +125,7 @@
                 <div class="editor-field">
                     <%: Html.TextBoxFor(m => m.CreditCardName)%>
                     <%: Html.ValidationMessageFor(m => m.CreditCardName)%>
+                    <p>(As it appears on the card)</p>
                 </div>
 
                  <div class="editor-label">
@@ -107,6 +134,7 @@
                 <div class="editor-field">
                     <%: Html.TextBoxFor(m => m.CreditCardType)%>
                     <%: Html.ValidationMessageFor(m => m.CreditCardType)%>
+                    <p>(VISA, MASTERCARD, DISCOVER, AMERICAN EXPRESS)</p>
                 </div>
 
                  <div class="editor-label">
@@ -123,6 +151,7 @@
                 <div class="editor-field">
                     <%: Html.TextBoxFor(m => m.CreditCardSecurityNumber)%>
                     <%: Html.ValidationMessageFor(m => m.CreditCardSecurityNumber)%>
+                    <p>(Located on back on card, 3 numbers)</p>
                 </div>
 
                 <div class="editor-label">
@@ -163,6 +192,7 @@
                 <div class="editor-field">
                     <%: Html.TextBoxFor(m => m.SSN)%>
                     <%: Html.ValidationMessageFor(m => m.SSN)%>
+                    <p>(ex: 123456789)</p>
                 </div>
 
                  <div class="editor-label">
@@ -171,13 +201,14 @@
                 <div class="editor-field">
                     <%: Html.TextBoxFor(m => m.DOB)%>
                     <%: Html.ValidationMessageFor(m => m.DOB)%>
+                    <p>(month/day/year ex:05/07/1990)</p>
                 </div>
 
                  <div class="editor-label">
                     <%: Html.LabelFor(m => m.Operations)%>
                 </div>
                 <div class="editor-field">
-                    <%: Html.TextBoxFor(m => m.Operations)%>
+                    <%: Html.TextAreaFor(m => m.Operations)%>
                     <%: Html.ValidationMessageFor(m => m.Operations)%>
                 </div>
 
@@ -185,7 +216,7 @@
                     <%: Html.LabelFor(m => m.Allergies)%>
                 </div>
                 <div class="editor-field">
-                    <%: Html.TextBoxFor(m => m.Allergies)%>
+                    <%: Html.TextAreaFor(m => m.Allergies)%>
                     <%: Html.ValidationMessageFor(m => m.Allergies)%>
                 </div>
 
@@ -193,7 +224,7 @@
                     <%: Html.LabelFor(m => m.Medication)%>
                 </div>
                 <div class="editor-field">
-                    <%: Html.TextBoxFor(m => m.Medication)%>
+                    <%: Html.TextAreaFor(m => m.Medication)%>
                     <%: Html.ValidationMessageFor(m => m.Medication)%>
                 </div>
 
@@ -210,7 +241,7 @@
                     <%: Html.LabelFor(m => m.FamilyHistory)%>
                 </div>
                 <div class="editor-field">
-                    <%: Html.TextBoxFor(m => m.FamilyHistory)%>
+                    <%: Html.TextAreaFor(m => m.FamilyHistory)%>
                     <%: Html.ValidationMessageFor(m => m.FamilyHistory)%>
                 </div>
 
@@ -234,7 +265,7 @@
                     <%: Html.LabelFor(m => m.RecentTests)%>
                 </div>
                 <div class="editor-field">
-                    <%: Html.TextBoxFor(m => m.RecentTests)%>
+                    <%: Html.TextAreaFor(m => m.RecentTests)%>
                     <%: Html.ValidationMessageFor(m => m.RecentTests)%>
                 </div>
 
@@ -244,6 +275,7 @@
                 <div class="editor-field">
                     <%: Html.TextBoxFor(m => m.LatestBloodPressure)%>
                     <%: Html.ValidationMessageFor(m => m.LatestBloodPressure)%>
+                    <p>(systolic pressure/diastolic pressure ex: 140/90)</p>
                 </div>
                 
                 <p>
