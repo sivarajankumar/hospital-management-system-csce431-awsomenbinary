@@ -49,7 +49,7 @@ namespace SQLConnector{
             }
         }
 
-        public void addUser(string username, string password) {
+        public void addPatientInformation(string username, string password) {
             string query = "INSERT INTO users (username, password)" +
                 "VALUES ('" + username + "','" + password + "')";
             MySqlCommand addUser = new MySqlCommand(query, this.connection);
