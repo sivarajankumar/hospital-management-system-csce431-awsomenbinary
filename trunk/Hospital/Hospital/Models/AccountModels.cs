@@ -69,11 +69,8 @@ namespace Hospital.Models
         [DataType(DataType.Password)]
         [DisplayName("Confirm password")]
         public string ConfirmPassword { get; set; }
-    }
 
-    //ryan, not sure if right
-    public class PatientInfoModel
-    {
+
         [Required]
         [DisplayName("Name")]
         public string Name { get; set; }
@@ -94,10 +91,6 @@ namespace Hospital.Models
         [DisplayName("Phone Number")]
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [DataType(DataType.EmailAddress)]
-        [DisplayName("Email address")]
-        public string Email { get; set; }
 
         [Required]
         [DisplayName("Credit Card Name")]
@@ -161,18 +154,9 @@ namespace Hospital.Models
         [Required]
         [DisplayName("Latest Blood Pressure")]
         public string LatestBloodPressure { get; set; }
-       
-
-
-        
-
-
-
-
-
-
 
     }
+
 
     #endregion
 
