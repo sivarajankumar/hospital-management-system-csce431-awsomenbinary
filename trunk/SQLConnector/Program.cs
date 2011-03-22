@@ -8,7 +8,7 @@ namespace SQLConnector{
             SQLConnector c = new SQLConnector("database-new.cse.tamu.edu", "djnemec-hosp", "djnemec", "csce431");
             c.connect();
 
-            if (c.userExists("dan") && c.verifyUser("dan", "pass")){
+            /*if (c.userExists("dan") && c.verifyUser("dan", "pass")){
                 Console.WriteLine("User exists!");
             }
             
@@ -17,7 +17,7 @@ namespace SQLConnector{
             }
             if (!c.userExists("test1")) {
                 Console.WriteLine("Error adding user");
-            }
+            }*/
             c.disconnect();
 
         }

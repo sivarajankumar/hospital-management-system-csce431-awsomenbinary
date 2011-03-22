@@ -14,6 +14,11 @@ namespace Hospital.Controllers
 
         public ActionResult Index()
         {
+            /*34895735893573489573489573895738573489573489573489573895738957895753895738957389475389579345
+             * ProfileBase profile = ProfileBase.Create(HttpContext.Profile.UserName, true);
+             */
+
+
             string[] roles = Roles.GetRolesForUser();
             if (roles.Length > 0)
             {
@@ -38,29 +43,36 @@ namespace Hospital.Controllers
                     return RedirectToAction("Administrator", "Portal");
                 }
             }
-            return View();
+
+            throw new HttpException(403, "Not authorized");
         }
 
+        [Authorize(Roles = "Patient")]
         public ActionResult Patient()
         {
             return View();
         }
 
+        [Authorize(Roles = "Doctor")]
         public ActionResult Doctor()
         {
             return View();
         }
 
+        [Authorize(Roles = "Nurse")]
         public ActionResult Nurse()
         {
+            
             return View();
         }
 
+        [Authorize(Roles = "Pharmacist")]
         public ActionResult Pharmacist()
         {
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Administrator()
         {
             return View();

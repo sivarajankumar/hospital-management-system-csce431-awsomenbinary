@@ -129,7 +129,7 @@ namespace Hospital.Controllers
                 if (createStatus == MembershipCreateStatus.Success && createUserStatus)
                 {
                     FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Portal");
                 }
                 else
                 {
