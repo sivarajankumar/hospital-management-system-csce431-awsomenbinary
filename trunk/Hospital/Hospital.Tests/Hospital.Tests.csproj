@@ -84,10 +84,6 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SQLConnector\SQLConnector.csproj">
-      <Project>{650CAED4-ABE2-42D7-91CB-D04B8D323682}</Project>
-      <Name>SQLConnector</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hospital\Hospital.csproj">
       <Project>{FDEA9199-79EE-4A1B-A1BC-850298E6715B}</Project>
       <Name>Hospital</Name>

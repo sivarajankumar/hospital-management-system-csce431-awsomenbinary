@@ -7,9 +7,10 @@ using System;
 
 namespace Hospital.Provider
 {
+    // AppointmentProvider is the class that actually interfaces with the MySQL server
+    // All actions on the database must be defined here
     public sealed class AppointmentProvider
     {
-        private ConnectionStringSettings pConnectionStringSettings;
         private string connectionString;
 
         public AppointmentProvider()
@@ -22,6 +23,8 @@ namespace Hospital.Provider
             connectionString = conn;
         }
 
+        // Retrieves the integer id of a username that is given when creating the user.
+        // All database actions on a specific user should identify the user by id.
         private int getUserIdFromName(string name)
         {
             int id = -1;
@@ -60,6 +63,7 @@ namespace Hospital.Provider
             return id;
         }
 
+        // Add an appointment to the appointment table
         public void addAppointment(string patient, string area, string doc, DateTime time)
         {
             int patient_id = getUserIdFromName(patient);
@@ -68,9 +72,15 @@ namespace Hospital.Provider
                 throw new Exception("User does not exist in system.");
             }
 
-            string query = "INSERT INTO appointments (patient, appt_area, appt_doctor, appt_time) " +
-                String.Format("VALUES ({0}, '{1}', '{2}', '{3:yyyy-MM-dd HH:mm:ss}')",
-                    patient_id, area, doc, time);
+            int doctor_id = getUserIdFromName(doc);
+            if (doctor_id < 0)
+            {
+                throw new Exception("Doctor does not exist in system.");
+            }
+
+            string query = "INSERT INTO appointments (patient, doctor, appt_area, appt_time) " +
+                String.Format("VALUES ({0}, '{1}', {2}, '{3:yyyy-MM-dd HH:mm:ss}')",
+                    patient_id, doctor_id, area, time);
 
 
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -162,6 +172,40 @@ namespace Hospital.Provider
             int patient_id = getUserIdFromName(patient);
 
             return getAppointments(String.Format("WHERE patient={0}", patient_id));
+        }
+
+        public bool cancelAppointment(Appointment app)
+        {
+            return cancelAppointment(app, true);
+        }
+
+        public bool cancelAppointment(Appointment app, bool restrict)
+        {
+            if (restrict && app.appt_time > DateTime.Now.AddDays(1))
+            {
+                return false;
+            }
+
+            string query = String.Format("DELETE FROM appointments WHERE id={0}", app.id);
+
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                MySqlCommand addUser = new MySqlCommand(query, connection);
+                addUser.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Could not remove appointment. Error: " + e.Message, e);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return true;
         }
 
 
