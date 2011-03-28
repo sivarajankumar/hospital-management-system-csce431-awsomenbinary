@@ -4,14 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Hospital.Models;
+using System.Web.Routing;
 
 namespace Hospital.Controllers
 {
-    public class PortalController : Controller
+    public class PortalController : GenericController
     {
-        //
-        // GET: /Portal/
+        public AppointmentProviderService AppointmentService;
 
+        protected override void Initialize(RequestContext requestContext)
+        {
+            if(AppointmentService == null) AppointmentService = new AppointmentProviderService();
+            base.Initialize(requestContext);
+        }
+
+        // GET: /Portal/
         public ActionResult Index()
         {
             /*34895735893573489573489573895738573489573489573489573895738957895753895738957389475389579345
@@ -19,32 +27,7 @@ namespace Hospital.Controllers
              */
 
 
-            string[] roles = Roles.GetRolesForUser();
-            if (roles.Length > 0)
-            {
-                if (roles.Contains("Patient"))
-                {
-                    return RedirectToAction("Patient", "Portal");
-                }
-                else if (roles.Contains("Doctor"))
-                {
-                    return RedirectToAction("Doctor", "Portal");
-                }
-                else if (roles.Contains("Nurse"))
-                {
-                    return RedirectToAction("Nurse", "Portal");
-                }
-                else if (roles.Contains("Pharmacist"))
-                {
-                    return RedirectToAction("Pharmacist", "Portal");
-                }
-                else if (roles.Contains("Administrator"))
-                {
-                    return RedirectToAction("Administrator", "Portal");
-                }
-            }
-
-            throw new HttpException(403, "Not authorized");
+            return redirectToPortal();
         }
 
         [Authorize(Roles = "Patient")]
