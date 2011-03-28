@@ -9,10 +9,14 @@ using System.Web.Security;
 namespace Hospital.Controllers
 {
     [HandleError]
-    public class HomeController : Controller
+    public class HomeController : GenericController
     {
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return redirectToPortal();
+            }
             return View();
         }
 
