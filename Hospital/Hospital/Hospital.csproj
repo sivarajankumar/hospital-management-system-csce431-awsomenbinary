@@ -144,12 +144,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SQLConnector\SQLConnector.csproj">
-      <Project>{650CAED4-ABE2-42D7-91CB-D04B8D323682}</Project>
-      <Name>SQLConnector</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
