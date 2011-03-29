@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Hospital;
 using Hospital.Controllers;
 using Hospital.Models;
+using Hospital.Profiles;
 
 namespace Hospital.Tests.Controllers
 {
@@ -253,35 +254,7 @@ namespace Hospital.Tests.Controllers
                 UserName = "someUser",
                 Email = "goodEmail",
                 Password = "goodPassword",
-                ConfirmPassword = "goodPassword",
-                FirstName = "someFirstName",
-                MiddleInital = "someMiddleIName",
-                LastName = "someLastName",
-                Age = "someAge",
-                Sex = "someSex",
-                MailingAddress = "someAddress",
-                PhoneNumber = "someNumber",
-                CreditCardName = "someCCName",
-                CreditCardType = "someCCType",
-                CreditCardNumber = "someCCNumber",
-                CreditCardSecurityNumber = "someCCSecurityNumber",
-                InsuranceCompany = "someICompany",
-                InsurancePolicyNumber = "someINumber",
-                InsurancePolicyHolder = "someIPH",
-                MartialStatus = "someMartialStatus",
-                SSN = "someSSN",
-                DOB = "someDOB",
-                Operations = "someOperation",
-                Allergies = "someAllergies",
-                Medication = "someMeds",
-                PastDoctor = "somePastDoc",
-                FamilyHistory = "someFamHis",
-                EmergencyContactName = "someEmgConName",
-                EmergencyContactNumber = "someEmgConNum",
-                RecentTests = "someRecentTests",
-                LatestBloodPressure = "someBP"
-
-
+                ConfirmPassword = "goodPassword"
             };
 
             // Act
@@ -342,6 +315,43 @@ namespace Hospital.Tests.Controllers
             Assert.AreEqual(10, viewResult.ViewData["PasswordLength"]);
         }
 
+        [TestMethod]
+        public void Patient_Registration_Data()
+        {
+            PatientProfile profile = new PatientProfile()
+            {
+               
+                FirstName = "someFirstName",
+                MiddleInital = "someMiddleIName",
+                LastName = "someLastName",
+                Age = "someAge",
+                Sex = "someSex",
+                MailingAddress = "someAddress",
+                PhoneNumber = "someNumber",
+                CreditCardName = "someCCName",
+                CreditCardType = "someCCType",
+                CreditCardNumber = "someCCNumber",
+                CreditCardSecurityNumber = "someCCSecurityNumber",
+                InsuranceCompany = "someICompany",
+                InsurancePolicyNumber = "someINumber",
+                InsurancePolicyHolder = "someIPH",
+                MartialStatus = "someMartialStatus",
+                SSN = "someSSN",
+                DOB = "someDOB",
+                Operations = "someOperation",
+                Allergies = "someAllergies",
+                Medication = "someMeds",
+                PastDoctor = "somePastDoc",
+                FamilyHistory = "someFamHis",
+                EmergencyContactName = "someEmgConName",
+                EmergencyContactNumber = "someEmgConNum",
+                RecentTests = "someRecentTests",
+                LatestBloodPressure = "someBP"
+
+            };
+            
+            
+        }
 
         private static AccountController GetAccountController()
         {

@@ -38,7 +38,7 @@ namespace Hospital.Controllers
 
         public bool CreateRestOfUser(string firstname, string middleinital, string lastname, string age, string sex, string mailingaddress, string phonenumber, string ccname, string cctype, string ccnumber, string ccsecuritynumber, string insurancecomp, string insurancepolicynumber, string insurancepolicyholder, string martialstatus, string ssn, string dob, string operations, string allergies, string medication, string pastdoctor, string familyhistory, string emergencyname, string emergencynumber, string recenttests, string bp)
         {
-            if (String.IsNullOrEmpty(firstname)) throw new ArgumentException("Value cannot be null or empty.", "firstname");
+            /*if (String.IsNullOrEmpty(firstname)) throw new ArgumentException("Value cannot be null or empty.", "firstname");
             if (String.IsNullOrEmpty(middleinital)) throw new ArgumentException("Value cannot be null or empty.", "middleinital");
             if (String.IsNullOrEmpty(lastname)) throw new ArgumentException("Value cannot be null or empty.", "lastname");
             if (String.IsNullOrEmpty(age)) throw new ArgumentException("Value cannot be null or empty.", "age");
@@ -64,6 +64,8 @@ namespace Hospital.Controllers
             if (String.IsNullOrEmpty(recenttests)) throw new ArgumentException("Value cannot be null or empty.", "recenttests");
             if (String.IsNullOrEmpty(bp)) throw new ArgumentException("Value cannot be null or empty.", "bp");
             //CreateRestOfUser(firstname, middleinital, lastname, age, sex, mailingaddress, phonenumber, ccname, cctype, ccnumber, ccsecuritynumber, insurancecomp, insurancepolicynumber, insurancepolicyholder, martialstatus, ssn, dob, operations, allergies, medication, pastdoctor, familyhistory, emergencyname, emergencynumber, recenttests, bp);
+            
+             */ 
             return true;
         }
 
