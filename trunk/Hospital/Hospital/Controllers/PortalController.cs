@@ -39,6 +39,7 @@ namespace Hospital.Controllers
         [Authorize(Roles = "Doctor")]
         public ActionResult Doctor()
         {
+          AppointmentService.getAppointments();
             return View();
         }
 
@@ -59,6 +60,12 @@ namespace Hospital.Controllers
         public ActionResult Administrator()
         {
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Appointments()
+        {
+          return PartialView();
         }
 
     }

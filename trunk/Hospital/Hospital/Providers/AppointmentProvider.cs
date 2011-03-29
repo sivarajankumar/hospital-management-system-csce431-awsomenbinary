@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Web.Security;
 using System;
+using System.Configuration.Provider;
 
 namespace Hospital.Provider
 {
     // AppointmentProvider is the class that actually interfaces with the MySQL server
     // All actions on the database must be defined here
-    public sealed class AppointmentProvider
+    public sealed class AppointmentProvider : ProviderBase
     {
         private string connectionString;
+        
 
         public AppointmentProvider()
             : this(ConfigurationManager.ConnectionStrings["MySqlMembershipConnection"].ConnectionString)
@@ -79,7 +81,7 @@ namespace Hospital.Provider
             }
 
             string query = "INSERT INTO appointments (patient, doctor, appt_area, appt_time) " +
-                String.Format("VALUES ({0}, '{1}', {2}, '{3:yyyy-MM-dd HH:mm:ss}')",
+                String.Format("VALUES ({0}, {1}, '{2}', '{3:yyyy-MM-dd HH:mm:ss}')",
                     patient_id, doctor_id, area, time);
 
 
@@ -114,7 +116,22 @@ namespace Hospital.Provider
             }
 
             List<Appointment> apps = new List<Appointment>();
-            string query = "SELECT * FROM appointments " + qualifier;
+            string query = "select pat.id, pat.patient, doc.doctor, " +
+                              "pat.specialization, pat.time " +
+                              "from ( " +
+                                "select a.id as id, u.name as patient, " +
+                                  "a.appt_area as specialization, " +
+                                  "a.appt_time as time " +
+                                  "from appointments a, my_aspnet_Users u " +
+                                  "where a.patient=u.id " +
+                                  ") pat " +
+                            "left join " +
+                              "(select a.id as id, u.name as doctor " +
+                                "from appointments a, my_aspnet_Users u " +
+                                  "where a.doctor=u.id " +
+                                  ") doc " +
+                            "on pat.id=doc.id "+
+                            qualifier;
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -135,9 +152,9 @@ namespace Hospital.Provider
                         {
                             Appointment a = new Appointment();
                             a.id = (int)values[0];
-                            a.patient = (int)values[1];
-                            a.appt_area = (String)values[2];
-                            a.appt_doctor = (String)values[3];
+                            a.patient = (String)values[1];
+                            a.doctor = (String)values[2];
+                            a.appt_area = (String)values[3];
                             a.appt_time = (DateTime)values[4];
                             apps.Add(a);
                         }
