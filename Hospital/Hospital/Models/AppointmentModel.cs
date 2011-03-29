@@ -16,9 +16,9 @@ namespace Hospital.Models
     public class Appointment
     {
         public int id { get; set; }
-        public int patient { get; set; }
-        public string appt_area { get; set; }
-        public string appt_doctor { get; set; }
+        public String patient { get; set; }
+        public String doctor { get; set; }
+        public String appt_area { get; set; }
         public DateTime appt_time { get; set; }
     }
     #endregion
@@ -51,6 +51,10 @@ namespace Hospital.Models
         public List<Appointment> getAppointments(string patient)
         {
             return _provider.getAppointmentsForPatient(patient);
+        }
+
+        public void cancelAppointment(Appointment app){
+          app.id = 0;
         }
 
     }
