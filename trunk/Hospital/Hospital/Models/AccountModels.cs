@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Hospital.Profiles;
 
 namespace Hospital.Models
 {
@@ -259,6 +260,7 @@ namespace Hospital.Models
             return status;
         }
 
+        
         public bool CreateRestOfUser(string firstname, string middleinital, string lastname, string age, string sex, string mailingaddress, string phonenumber, string ccname, string cctype, string ccnumber, string ccsecuritynumber, string insurancecomp, string insurancepolicynumber, string insurancepolicyholder, string martialstatus, string ssn, string dob, string operations, string allergies, string medication, string pastdoctor, string familyhistory, string emergencyname, string emergencynumber, string recenttests, string bp)
         {
             if (String.IsNullOrEmpty(firstname)) throw new ArgumentException("Value cannot be null or empty.", "firstname");
@@ -286,11 +288,14 @@ namespace Hospital.Models
             if (String.IsNullOrEmpty(emergencyname)) throw new ArgumentException("Value cannot be null or empty.", "emergencyname");
             if (String.IsNullOrEmpty(recenttests)) throw new ArgumentException("Value cannot be null or empty.", "recenttests");
             if (String.IsNullOrEmpty(bp)) throw new ArgumentException("Value cannot be null or empty.", "bp");
-            //CreateRestOfUser(firstname, middleinital, lastname, age, sex, mailingaddress, phonenumber, ccname, cctype, ccnumber, ccsecuritynumber, insurancecomp, insurancepolicynumber, insurancepolicyholder, martialstatus, ssn, dob, operations, allergies, medication, pastdoctor, familyhistory, emergencyname, emergencynumber, recenttests, bp);
-       
+            
 
+            PatientProfile profile = new PatientProfile();
+            profile.UserProfile(firstname, middleinital, lastname, age, sex, mailingaddress, phonenumber, ccname, cctype, ccnumber, ccsecuritynumber, insurancecomp, insurancepolicynumber, insurancepolicyholder, martialstatus, ssn, dob, operations, allergies, medication, pastdoctor, familyhistory, emergencyname, emergencynumber, recenttests, bp);
             return true;
+           
         }
+        
 
         public bool ChangePassword(string userName, string oldPassword, string newPassword)
         {
