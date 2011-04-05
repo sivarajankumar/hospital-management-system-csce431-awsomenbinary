@@ -1,0 +1,6 @@
+H:\431\Hospital\trunk\SQLConnector\bin\Debug\SQLConnector.exe
+H:\431\Hospital\trunk\SQLConnector\bin\Debug\SQLConnector.pdb
+H:\431\Hospital\trunk\SQLConnector\bin\Debug\MySql.Data.dll
+H:\431\Hospital\trunk\SQLConnector\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\431\Hospital\trunk\SQLConnector\obj\x86\Debug\SQLConnector.exe
+H:\431\Hospital\trunk\SQLConnector\obj\x86\Debug\SQLConnector.pdb
