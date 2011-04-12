@@ -37,5 +37,34 @@ namespace Hospital.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Doctor")]
+        public ActionResult Edit(String patient)
+        {
+            ViewData["patient"] = patient;
+            MedicalRecord model = svc.getMedicalRecordsForPatient(patient);
+            return View(model);
+        }
+
+        [Authorize(Roles = "Doctor")]
+        public ActionResult Update(String patient)
+        {
+            MedicalRecord model = svc.getMedicalRecordsForPatient(patient);
+            if (!String.IsNullOrEmpty(Request.Form["previousMedicalHistory"]))
+            {
+                model.previousMedicalHistory = Request.Form["previousMedicalHistory"];
+            }
+            if (!String.IsNullOrEmpty(Request.Form["currentMedicalHistory"]))
+            {
+                model.previousMedicalHistory = Request.Form["curentMedicalHistory"];
+            }
+            if (!String.IsNullOrEmpty(Request.Form["prescriptions"]))
+            {
+                String[] separated = Request.Form["prescriptions"].Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                model.prescriptions = new List<String>(separated);
+            }
+            svc.updateMedicalecordsForPatient(patient, model);
+            return RedirectToAction("Medical", "Records", new { patient = patient });
+        }
+
     }
 }

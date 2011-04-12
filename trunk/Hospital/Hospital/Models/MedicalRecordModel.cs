@@ -38,6 +38,11 @@ namespace Hospital.Models
         {
             return _provider.getMedicalRecordsForPatient(name);
         }
+
+        public void updateMedicalecordsForPatient(String patient, MedicalRecord newRecords)
+        {
+            _provider.updateMedicalRecordsForPatient(patient, newRecords);
+        }
     }
     #endregion
 }
