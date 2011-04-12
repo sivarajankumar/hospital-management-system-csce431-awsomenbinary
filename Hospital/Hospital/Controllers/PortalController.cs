@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Hospital.Models;
 using System.Web.Routing;
+using System.Web.Profile;
 
 namespace Hospital.Controllers
 {
@@ -22,11 +23,6 @@ namespace Hospital.Controllers
         // GET: /Portal/
         public ActionResult Index()
         {
-            /*34895735893573489573489573895738573489573489573489573895738957895753895738957389475389579345
-             * ProfileBase profile = ProfileBase.Create(HttpContext.Profile.UserName, true);
-             */
-
-
             return redirectToPortal();
         }
 
@@ -39,7 +35,6 @@ namespace Hospital.Controllers
         [Authorize(Roles = "Doctor")]
         public ActionResult Doctor()
         {
-          AppointmentService.getAppointments();
             return View();
         }
 
