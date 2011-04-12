@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Medical Records for <%: ViewData["patient"] %></h2>
+    <h2>Medical Records for <%: ViewData["patient"] %> <%= Html.ActionLink("Edit", "Edit", new{ patient = ViewData["patient"]}) %></h2>
 
     <div id="records">
         <ul>

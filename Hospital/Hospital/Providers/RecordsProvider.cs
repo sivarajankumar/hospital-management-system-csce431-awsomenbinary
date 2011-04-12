@@ -5,6 +5,7 @@ using System.Web;
 using System.Configuration.Provider;
 using System.Configuration;
 using Hospital.Models;
+using MySql.Data.MySqlClient;
 
 namespace Hospital.Providers
 {
@@ -29,6 +30,34 @@ namespace Hospital.Providers
             }
 
             return record;
+        }
+
+        public void updateMedicalRecordsForPatient(String patient, MedicalRecord newRecords)
+        {
+            //String prescriptions = "";
+            //foreach (String p in newRecords.prescriptions)
+            //{
+            //    prescriptions += p + "\n";
+            //}
+            //string query = String.Format("UPDATE records SET previous='{0}', current='{1}, prescriptions={2} WHERE patient={3}",
+            //    newRecords.previousMedicalHistory, newRecords.currentMedicalHistory, prescriptions, getUserIdFromName(patient));
+
+
+            //MySqlConnection connection = new MySqlConnection(connectionString);
+            //try
+            //{
+            //    connection.Open();
+            //    MySqlCommand addUser = new MySqlCommand(query, connection);
+            //    addUser.ExecuteNonQuery();
+            //}
+            //catch (Exception e)
+            //{
+            //    throw new Exception("Could not update Medical Record. Error: " + e.Message, e);
+            //}
+            //finally
+            //{
+            //    connection.Close();
+            //}
         }
 
     }
