@@ -412,6 +412,12 @@ namespace Hospital.Tests.Controllers
                 get { return 10; }
             }
 
+            public bool ValidateUserInformation(string firstname, string middleinital, string lastname, string age, string sex, string mailingaddress, string phonenumber, string ccname, string cctype, string ccnumber, string ccsecuritynumber, string insurancecomp, string insurancepolicynumber, string insurancepolicyholder, string martialstatus, string ssn, string dob, string operations, string allergies, string medication, string pastdoctor, string familyhistory, string emergencyname, string emergencynumber, string recenttests, string bp)
+            {
+                return true;
+            }
+        
+
             public bool ValidateUser(string userName, string password)
             {
                 return (userName == "someUser" && password == "goodPassword");

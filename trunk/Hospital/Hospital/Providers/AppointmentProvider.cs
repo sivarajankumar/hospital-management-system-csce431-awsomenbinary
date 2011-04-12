@@ -6,64 +6,12 @@ using System.Web.Security;
 using System;
 using System.Configuration.Provider;
 
-namespace Hospital.Provider
+namespace Hospital.Providers
 {
     // AppointmentProvider is the class that actually interfaces with the MySQL server
     // All actions on the database must be defined here
-    public sealed class AppointmentProvider : ProviderBase
+    public sealed class AppointmentProvider : BaseProvider
     {
-        private string connectionString;
-        
-
-        public AppointmentProvider()
-            : this(ConfigurationManager.ConnectionStrings["MySqlMembershipConnection"].ConnectionString)
-        {
-        }
-
-        public AppointmentProvider(string conn)
-        {
-            connectionString = conn;
-        }
-
-        // Retrieves the integer id of a username that is given when creating the user.
-        // All database actions on a specific user should identify the user by id.
-        private int getUserIdFromName(string name)
-        {
-            int id = -1;
-            string query = String.Format("SELECT id FROM my_aspnet_Users WHERE name='{0}' LIMIT 1", name);
-
-            MySqlConnection connection = new MySqlConnection(connectionString);
-
-            try
-            {
-                connection.Open();
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
-
-                MySqlDataReader response = cmd.ExecuteReader();
-                try
-                {
-                    while (response.Read())
-                    {
-                        id = response.GetInt32(0);
-                    }
-                }
-                finally
-                {
-                    response.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Could not access appointments. Error: " + e.Message, e);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return id;
-        }
 
         // Add an appointment to the appointment table
         public void addAppointment(string patient, string area, string doc, DateTime time)
@@ -105,17 +53,6 @@ namespace Hospital.Provider
 
         public List<Appointment> getAppointments()
         {
-            return getAppointments("");
-        }
-
-        public List<Appointment> getAppointments(string qualifier)
-        {
-            if (qualifier == null)
-            {
-                qualifier = "";
-            }
-
-            List<Appointment> apps = new List<Appointment>();
             string query = "select pat.id, pat.patient, doc.doctor, " +
                               "pat.specialization, pat.time " +
                               "from ( " +
@@ -130,8 +67,14 @@ namespace Hospital.Provider
                                 "from appointments a, my_aspnet_Users u " +
                                   "where a.doctor=u.id " +
                                   ") doc " +
-                            "on pat.id=doc.id "+
-                            qualifier;
+                            "on pat.id=doc.id ";
+            return getAppointments(query);
+        }
+
+        public List<Appointment> getAppointments(string query)
+        {
+
+            List<Appointment> apps = new List<Appointment>();
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -187,18 +130,58 @@ namespace Hospital.Provider
             }
             
             int patient_id = getUserIdFromName(patient);
-
-            return getAppointments(String.Format("WHERE patient={0}", patient_id));
+            string query = "select pat.id, pat.patient, doc.doctor, " +
+                              "pat.specialization, pat.time " +
+                              "from ( " +
+                                "select a.id as id, u.name as patient, " +
+                                  "a.appt_area as specialization, " +
+                                  "a.appt_time as time " +
+                                  "from appointments a, my_aspnet_Users u " +
+                                  "where a.patient=u.id and a.patient=" + patient_id +
+                                  " ) pat " +
+                            "left join " +
+                              "(select a.id as id, u.name as doctor " +
+                                "from appointments a, my_aspnet_Users u " +
+                                  "where a.doctor=u.id " +
+                                  ") doc " +
+                            "on pat.id=doc.id ";
+            return getAppointments(query);
         }
 
-        public bool cancelAppointment(Appointment app)
+        private Appointment getAppointmentById(int id)
         {
-            return cancelAppointment(app, true);
+            string query = "select pat.id, pat.patient, doc.doctor, " +
+                              "pat.specialization, pat.time " +
+                              "from ( " +
+                                "select a.id as id, u.name as patient, " +
+                                  "a.appt_area as specialization, " +
+                                  "a.appt_time as time " +
+                                  "from appointments a, my_aspnet_Users u " +
+                                  "where a.patient=u.id and a.id =" + id +
+                                  " ) pat " +
+                            "left join " +
+                              "(select a.id as id, u.name as doctor " +
+                                "from appointments a, my_aspnet_Users u " +
+                                  "where a.doctor=u.id " +
+                                  ") doc " +
+                            "on pat.id=doc.id ";
+            List<Appointment> apps = getAppointments(query);
+            if (apps.Count < 1)
+            {
+                return null;
+            }
+            return apps[0];
         }
 
-        public bool cancelAppointment(Appointment app, bool restrict)
+        public bool cancelAppointment(int id)
         {
-            if (restrict && app.appt_time > DateTime.Now.AddDays(1))
+            return cancelAppointment(id, true);
+        }
+
+        public bool cancelAppointment(int id, bool restrict)
+        {
+            Appointment app = getAppointmentById(id);
+            if (restrict && DateTime.Compare(app.appt_time, DateTime.Now.AddDays(1)) < 0)
             {
                 return false;
             }

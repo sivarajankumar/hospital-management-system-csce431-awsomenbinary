@@ -25,6 +25,7 @@
                     <li><%: Html.ActionLink("Home", "Index", "Portal")%></li>
                     <li><%: Html.ActionLink("About", "About", "Home")%></li>
                     <li><%: Html.ActionLink("Appointments", "Index", "Appointment")%></li>
+                    <li><%: Html.ActionLink("Medical Records", "Index", "Records")%></li>
                 </ul>
             
             </div>
@@ -37,7 +38,6 @@
             </div>
         </div>
     </div>
-    <%= Html.Telerik().ScriptRegistrar() %>
 
 </body>
 </html>

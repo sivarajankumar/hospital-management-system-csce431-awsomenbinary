@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using MySql.Data.MySqlClient;
-using Hospital.Provider;
+using Hospital.Providers;
 
 namespace Hospital.Models
 {
@@ -53,8 +53,14 @@ namespace Hospital.Models
             return _provider.getAppointmentsForPatient(patient);
         }
 
-        public void cancelAppointment(Appointment app){
-          app.id = 0;
+        public void cancelAppointment(int id)
+        {
+            _provider.cancelAppointment(id);
+        }
+
+        public void cancelAppointment(int id, bool restrict)
+        {
+            _provider.cancelAppointment(id, restrict);
         }
 
     }
