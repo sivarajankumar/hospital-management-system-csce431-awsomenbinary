@@ -164,9 +164,6 @@
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Home\About.aspx" />
-    <Content Include="Views\Portal\Shared\Error.aspx" />
-    <Content Include="Views\Portal\Shared\LogOnUserControl.ascx" />
-    <Content Include="Views\Portal\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
