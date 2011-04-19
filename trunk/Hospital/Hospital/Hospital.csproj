@@ -92,6 +92,7 @@
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Controllers\RecordController.cs" />
     <Compile Include="Global.asax.cs">
@@ -101,6 +102,7 @@
     <Compile Include="Models\AppointmentModel.cs" />
     <Compile Include="Models\BillingModel.cs" />
     <Compile Include="Models\MedicalRecordModel.cs" />
+    <Compile Include="Models\PaymentModels.cs" />
     <Compile Include="Profiles\AdministratorProfile.cs" />
     <Compile Include="Profiles\DoctorProfile.cs" />
     <Compile Include="Profiles\NurseProfile.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Providers\AppointmentProvider.cs" />
     <Compile Include="Providers\BaseProvider.cs" />
     <Compile Include="Providers\BillingProvider.cs" />
+    <Compile Include="Providers\PaymentProvider.cs" />
     <Compile Include="Providers\RecordsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +127,8 @@
     <Content Include="Views\Billing\EditBilling.aspx" />
     <Content Include="Views\Billing\ShowBilling.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Payment\DoctorPayment.aspx" />
+    <Content Include="Views\Payment\PNPayment.aspx" />
     <Content Include="Views\Portal\Administrator.aspx" />
     <Content Include="Views\Portal\Doctor.aspx" />
     <Content Include="Views\Portal\Index.aspx" />
