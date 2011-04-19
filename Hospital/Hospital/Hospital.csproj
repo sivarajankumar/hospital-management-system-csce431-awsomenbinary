@@ -125,6 +125,7 @@
     <Content Include="Scripts\jquery.ui.widget.js" />
     <Content Include="Views\Appointment\Index.aspx" />
     <Content Include="Views\Billing\EditBilling.aspx" />
+    <Content Include="Views\Billing\Index.aspx" />
     <Content Include="Views\Billing\ShowBilling.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Payment\DoctorPayment.aspx" />
