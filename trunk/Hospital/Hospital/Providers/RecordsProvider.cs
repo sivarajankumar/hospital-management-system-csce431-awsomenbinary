@@ -16,11 +16,12 @@ namespace Hospital.Providers
         {
             return getMedicalRecordsForPatient(getUserIdFromName(name));
         }
-
+        /*
         public BillingRecords getBillingRecordsForPatient(String name)
         {
             return getBillingRecordsForPatient(getUserIdFromName(name));
         }
+         */
 
         public MedicalRecord getMedicalRecordsForPatient(int id)
         {
@@ -66,7 +67,7 @@ namespace Hospital.Providers
             //    connection.Close();
             //}
         }
-
+        /*
         public BillingRecords getBillingRecordsForPatient(int id)
         {
             BillingRecords record = new BillingRecords();
@@ -81,5 +82,6 @@ namespace Hospital.Providers
             return record;
 
         }
+         */
     }
 }

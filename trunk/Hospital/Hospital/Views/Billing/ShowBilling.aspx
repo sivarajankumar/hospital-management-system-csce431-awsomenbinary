@@ -8,7 +8,4 @@
 
     <h2>Billing information for <%: ViewData["patient"] %></h2>
 
-    <p><%= Html.ActionLink("Show Billing", "ShowBilling") %></p>
-
-
 </asp:Content>
