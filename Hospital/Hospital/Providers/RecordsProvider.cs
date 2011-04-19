@@ -17,6 +17,11 @@ namespace Hospital.Providers
             return getMedicalRecordsForPatient(getUserIdFromName(name));
         }
 
+        public BillingRecords getBillingRecordsForPatient(String name)
+        {
+            return getBillingRecordsForPatient(getUserIdFromName(name));
+        }
+
         public MedicalRecord getMedicalRecordsForPatient(int id)
         {
             MedicalRecord record = new MedicalRecord();
@@ -47,6 +52,8 @@ namespace Hospital.Providers
             //try
             //{
             //    connection.Open();
+        
+
             //    MySqlCommand addUser = new MySqlCommand(query, connection);
             //    addUser.ExecuteNonQuery();
             //}
@@ -60,5 +67,19 @@ namespace Hospital.Providers
             //}
         }
 
+        public BillingRecords getBillingRecordsForPatient(int id)
+        {
+            BillingRecords record = new BillingRecords();
+            if (id > 0)
+            {
+                record.Date = DateTime.Today;
+                record.BillTotal = 1000000.00;
+                record.Item = "One Million Dollars";
+
+            }
+
+            return record;
+
+        }
     }
 }

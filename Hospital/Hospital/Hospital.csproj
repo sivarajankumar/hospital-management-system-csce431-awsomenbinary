@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
@@ -98,6 +99,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AppointmentModel.cs" />
+    <Compile Include="Models\BillingModel.cs" />
     <Compile Include="Models\MedicalRecordModel.cs" />
     <Compile Include="Profiles\AdministratorProfile.cs" />
     <Compile Include="Profiles\DoctorProfile.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AppointmentProvider.cs" />
     <Compile Include="Providers\BaseProvider.cs" />
+    <Compile Include="Providers\BillingProvider.cs" />
     <Compile Include="Providers\RecordsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +121,8 @@
     <Content Include="Scripts\jquery.ui.tabs.js" />
     <Content Include="Scripts\jquery.ui.widget.js" />
     <Content Include="Views\Appointment\Index.aspx" />
+    <Content Include="Views\Billing\EditBilling.aspx" />
+    <Content Include="Views\Billing\ShowBilling.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Portal\Administrator.aspx" />
     <Content Include="Views\Portal\Doctor.aspx" />
@@ -153,9 +158,9 @@
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Home\About.aspx" />
-    <Content Include="Views\Shared\Error.aspx" />
-    <Content Include="Views\Shared\LogOnUserControl.ascx" />
-    <Content Include="Views\Shared\Site.Master" />
+    <Content Include="Views\Portal\Shared\Error.aspx" />
+    <Content Include="Views\Portal\Shared\LogOnUserControl.ascx" />
+    <Content Include="Views\Portal\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
