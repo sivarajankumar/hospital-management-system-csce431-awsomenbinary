@@ -45,10 +45,10 @@ namespace Hospital.Providers
         public List<BillingRecords> updateBilling()
         {
             string query = "";
-            return updateBilling(query);
+            return getBilling(query);
         }
 
-        public List<BillingRecords> updateBilling(string query)
+        public List<BillingRecords> getBilling(string query)
         {
 
             List<BillingRecords> records = new List<BillingRecords>();
@@ -96,6 +96,34 @@ namespace Hospital.Providers
             return records;
         }
 
+        public BillingRecords patient_getBillingRecords(string patient)
+        {
+            if (!Roles.IsUserInRole(patient, "patient"))
+            {
+                return new <BillingRecords>();
+            }
+
+            string query = "";
+            List<BillingRecords> records  = getBilling(query);
+            if (records.Count < 1)
+            {
+                return null;
+            }
+            return records[0];
+
+        }
+        private BillingRecords getBillingRecords(int id)
+        {
+            string query = "";
+            List<BillingRecords> records = getBilling(query);
+            if (records.Count < 1)
+            {
+                return null;
+            }
+            return records[0];
+
+        }
+
         public bool deleteRecords(int id)
         {
            return deleteRecords(id, true);
@@ -104,7 +132,7 @@ namespace Hospital.Providers
 
         public bool deleteRecords(int id, bool restrict)
         {
-            BillingRecords records = getBilling(id);
+            BillingRecords records = getBillingRecords(id);
            
             string query = String.Format("DELETE FROM billing records WHERE id={0}", records.id);
 
