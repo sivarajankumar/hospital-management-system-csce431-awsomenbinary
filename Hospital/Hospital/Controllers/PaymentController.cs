@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Hospital.Models;
+using System.Web.Security;
+using Microsoft.CSharp;
 
 namespace Hospital.Controllers
 {
-    public class PaymentController : Controller
+    public class PaymentController : GenericController
     {
         //
         // GET: /Payment/
 
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return redirectToPortal();
+            }
             return View();
         }
+
+        
 
         //
         // GET: /Payment/Details/5

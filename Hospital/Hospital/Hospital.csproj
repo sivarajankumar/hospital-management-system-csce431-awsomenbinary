@@ -104,6 +104,7 @@
     <Compile Include="Models\MedicalRecordModel.cs" />
     <Compile Include="Models\PaymentModels.cs" />
     <Compile Include="Models\RegistrationModule.cs" />
+    <Compile Include="Profiles\SurgeonProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AppointmentProvider.cs" />
     <Compile Include="Providers\BaseProvider.cs" />
@@ -133,6 +134,7 @@
     <Content Include="Views\Portal\Nurse.aspx" />
     <Content Include="Views\Portal\Patient.aspx" />
     <Content Include="Views\Portal\Pharmacist.aspx" />
+    <Content Include="Views\Portal\Surgeon.aspx" />
     <Content Include="Views\Records\Edit.aspx" />
     <Content Include="Views\Records\Index.aspx" />
     <Content Include="Views\Records\Medical.aspx" />
