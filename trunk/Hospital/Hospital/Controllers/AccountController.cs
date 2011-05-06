@@ -13,8 +13,9 @@ namespace Hospital.Controllers
 {
 
     [HandleError]
-    public class AccountController : Controller
+    public class AccountController : GenericController
     {
+        RegistrationProviderService svc = new RegistrationProviderService();
 
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
@@ -84,31 +85,47 @@ namespace Hospital.Controllers
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View();
         }
+        
+
 
         [HttpPost]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(RegistrationModel model)
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
-               
-               
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.username, model.password, model.email);
+                svc.registerUser(model.username, model.email, model.password, model.firstname, model.middleinital, model.lastname, model.age, model.sex, model.mailingaddress, model.phonenumber, model.creditcardname, model.creditcardtype, model.creditcardnumber, model.creditcardsecuritynumber, model.insurancecompany, model.insurancepolicynumber, model.insurancepolicyholder, model.martialstatus, model.ssn, model.dob, model.operations, model.allergies, model.medication, model.pastdoctor, model.familyhistory, model.emergencycontactname, model.emergencycontactnumber, model.recenttests, model.latestbloodpressure);
+                FormsService.SignIn(model.username, false); 
+                return RedirectToAction("Patient","Portal");
+            }
 
-                if (createStatus == MembershipCreateStatus.Success)
+            return View(model);
+
+           /*
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the user
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.username, model.password, model.email);
+                svc.registerUser(model.username, model.email, model.password, model.firstname, model.middleinital, model.lastname, model.age, model.sex, model.mailingaddress, model.phonenumber, model.creditcardname, model.creditcardtype, model.creditcardnumber, model.creditcardsecuritynumber, model.insurancecompany, model.insurancepolicynumber, model.insurancepolicyholder, model.martialstatus, model.ssn, model.dob, model.operations, model.allergies, model.medication, model.pastdoctor, model.familyhistory, model.emergencycontactname, model.emergencycontactnumber, model.recenttests, model.latestbloodpressure);
+                
+                
+               if (createStatus == MembershipCreateStatus.Success)
                 {
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
+                    FormsService.SignIn(model.username, false); 
+                 
                     return RedirectToAction("Index", "Portal");
                 }
                 else
                 {
                     ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
                 }
+            
             }
-
+        
             // If we got this far, something failed, redisplay form
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View(model);
+             */
         }
 
 

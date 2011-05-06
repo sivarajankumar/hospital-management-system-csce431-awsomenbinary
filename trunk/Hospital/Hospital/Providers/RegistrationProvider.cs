@@ -1,7 +1,5 @@
 ﻿using System.Configuration;
 using Hospital.Models;
-using System.Configuration;
-using Hospital.Models;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Web.Security;
@@ -13,17 +11,20 @@ namespace Hospital.Providers
     public sealed class RegistrationProvider : BaseProvider
     {
 
+
         public void registerUser(string user, string email, string password, string firstname, string middleinital, string lastname, string age, string sex, string mailingaddress, string phonenumber, string creditcardname, string creditcardtype, string creditcardnumber, string creditcardsecuritynumber, string insurancecompany, string insurancepolicynumber, string insurancepolicyholder, string martialstatus, string ssn, string dob, string operations, string allergies, string medication, string pastdoctor, string familyhistory, string emergencycontactname, string emergencycontactnumber, string recenttests, string latestbloodpressure)
         {
             int user_id = getUserIdFromName(user);
+
             if (user_id < 0)
             {
                 throw new Exception("User does not exist in system.");
 
             }
 
-            string query = "INSERT INTO REGISTRATION(username,email,password,firstname,middleinitial,lastname,age,sex,mailingaddress,phonenumber,creditcardname,creditcardtype,creditcardnumber,creditcardsecuritynumber,insurancecompany,insurancepolicynumber,insurancepolicyholder,martialstatus,ssn,dob,operations,allergies,medication,pastdoctor,familyhistory,emergencycontactname,emergencycontactnumber,recenttests,latestbloodpressure)";
-             
+            string query = "INSERT INTO Registration(id,username,email,password,firstname,middleinitial,lastname,age,sex,mailingaddress,phonenumber,creditcardname,creditcardtype,creditcardnumber,creditcardsecuritynumber,insurancecompany,insurancepolicynumber,insurancepolicyholder,martialstatus,ssn,dob,operations,allergies,medication,pastdoctor,familyhistory,emergencycontactname,emergencycontactnumber,recenttests,latestbloodpressure)";
+            query += String.Format(" Values({0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}','{27}','{28}','{29}')", user_id,user, email, password, firstname, middleinital, lastname, age, sex, mailingaddress, phonenumber, creditcardname, creditcardtype, creditcardnumber, creditcardsecuritynumber, insurancecompany, insurancepolicynumber, insurancepolicyholder, martialstatus, ssn, dob, operations, allergies, medication, pastdoctor, familyhistory, emergencycontactname, emergencycontactnumber, recenttests, latestbloodpressure);
+            
             MySqlConnection connection = new MySqlConnection(connectionString);
             try
             {
@@ -43,16 +44,16 @@ namespace Hospital.Providers
         }
 
 
-        public List<Registration> getRegistration()
+        public List<RegistrationModel> getRegistration()
         {
             string query = "";
             return getRegistration(query);
         }
 
 
-        public List<Registration> getRegistration(string query)
+        public List<RegistrationModel> getRegistration(string query)
         {
-            List<Registration> reg = new List<Registration>();
+            List<RegistrationModel> reg = new List<RegistrationModel>();
             MySqlConnection connection = new MySqlConnection(connectionString);
 
             try
@@ -70,7 +71,7 @@ namespace Hospital.Providers
                         int num = response.GetValues(values);
                         if (num == 30)
                         {
-                            Registration r = new Registration();
+                            RegistrationModel r = new RegistrationModel();
                             r.id = (int)values[0];
                             r.username = (String)values[1];
                             r.email = (String)values[2];
@@ -126,11 +127,11 @@ namespace Hospital.Providers
             
         }
 
-        public List<Registration> getRegistrationForUser(string user)
+        public List<RegistrationModel> getRegistrationForUser(string user)
         {
             if (!Roles.IsUserInRole(user, "patient"))
             {
-                return new List<Registration>();
+                return new List<RegistrationModel>();
             }
 
             int user_id = getUserIdFromName(user);
@@ -138,10 +139,10 @@ namespace Hospital.Providers
             return getRegistration(query);
         }
 
-        private Registration getRegistrationById(int id)
+        private RegistrationModel getRegistrationById(int id)
         {
             string query = "";
-            List<Registration> reg = getRegistration(query);
+            List<RegistrationModel> reg = getRegistration(query);
             if (reg.Count < 1)
             {
                 return null;
