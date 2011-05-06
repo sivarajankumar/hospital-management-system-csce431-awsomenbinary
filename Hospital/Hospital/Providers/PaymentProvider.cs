@@ -12,7 +12,7 @@ namespace Hospital.Providers
     public class PaymentProvider
     {
 
-        public void makePayment()
+       /* public void makePayment()
         {
 
             List<PaymentRecords> records = new List<PaymentRecords>();
@@ -64,7 +64,7 @@ namespace Hospital.Providers
             return records;
         }
 
-
+        */
 
 
     }
