@@ -76,11 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PortalControllerTest.cs" />
-<<<<<<< .mine
     <Compile Include="Controllers\RecordControllerTest.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-=======
->>>>>>> .r42
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\AccountControllerTest.cs" />

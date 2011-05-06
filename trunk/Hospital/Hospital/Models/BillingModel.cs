@@ -28,27 +28,30 @@ namespace Hospital.Models
     {
         private readonly BillingProvider _provider;
 
-        public BillingProviderService() : this(null)
+        /*public BillingProviderService() : this(null)
         {
 
-        }
-        public BillingProviderService(BillingProvider provider)
+        }*/
+
+        /*public BillingProviderService(BillingProvider provider)
         {
             _provider = provider ?? new BillingProvider();
-        }
+        }*/
+
         public void editBillingStatement(int user_id, DateTime date, double amt, string service_item )
         {
             _provider.addBill(user_id, date, amt, service_item);
         }
+
         public void clearBillingStatement(int user_id)
         {
             _provider.deleteRecords(user_id);
         }
+
         public void showBillingStatement(string user)
         {
             _provider.patient_getBillingRecords(user);
         }
         
-
     }
 }

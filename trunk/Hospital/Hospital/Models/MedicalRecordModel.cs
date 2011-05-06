@@ -21,6 +21,7 @@ namespace Hospital.Models
     }
     #endregion
 
+
     #region services
     public class MedicalRecordService
     {
@@ -51,4 +52,5 @@ namespace Hospital.Models
         }
     }
     #endregion
+
 }
