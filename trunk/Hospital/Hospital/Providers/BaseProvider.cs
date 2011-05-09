@@ -22,6 +22,45 @@ namespace Hospital.Providers
             connectionString = conn;
         }
 
+        //retrieves user name given the userID.
+        protected string getUserNameFromID(int userID)
+        {
+            string name = null;
+            string query = String.Format("SELECT id FROM my_aspnet_Users WHERE", userID);
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+
+                MySqlDataReader response = cmd.ExecuteReader();
+                try
+                {
+                    while (response.Read())
+                    {
+                        name = response.GetString(3);
+
+                    }
+                }
+                finally
+                {
+                    response.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Could not access my_aspnet_Users. Error " + e.Message, e);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return name;
+
+        }
 
         // Retrieves the integer id of a username that is given when creating the user.
         // All database actions on a specific user should identify the user by id.

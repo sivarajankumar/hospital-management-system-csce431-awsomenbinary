@@ -13,28 +13,31 @@ namespace Hospital.Providers
         //
         // GET: /BillingProvider/
 
-        public void addBill(int UserId, DateTime Date, double BillTotal, string Item)
+        //Updating Bill function
+        public void updateBill(int UserId, DateTime Date, double BillTotal, string Item)
         {
+            //Check for UserId in the system database
             if (UserId < 0)
             {
-                throw new Exception("Invalid User ID: User does not exist in system, please register an account");
+                throw new Exception("Invalid User ID: User does not exist in system, please have them register an account");
             }
             Date = DateTime.Today;
 
             string query = "Billing information(UserId, BillTotal, Item) " +
                 String.Format("VALUES ({0}, '{2:yyyy-MM-dd HH:mm:ss}', '{3}', '{4}')", UserId, Date, BillTotal, Item);
 
-
+            //open a connection to the MySQL database
+            //error handling included
             MySqlConnection connection = new MySqlConnection(connectionString);
             try
             {
                 connection.Open();
-                MySqlCommand addUser = new MySqlCommand(query, connection);
-                addUser.ExecuteNonQuery();
+                MySqlCommand addBill = new MySqlCommand(query, connection);
+                addBill.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                throw new Exception("Could not add user. Error: " + e.Message, e);
+                throw new Exception("Could not add Bill for patient. Error: " + e.Message, e);
             }
             finally
             {
@@ -42,12 +45,7 @@ namespace Hospital.Providers
             }
         }
 
-        public List<BillingRecords> updateBilling()
-        {
-            string query = "";
-            return getBilling(query);
-        }
-
+      
         public List<BillingRecords> getBilling(string query)
         {
 
@@ -96,14 +94,19 @@ namespace Hospital.Providers
             return records;
         }
 
-        public BillingRecords patient_getBillingRecords(string patient)
+        public BillingRecords patient_getBillingRecords(int userID)
         {
-            if (!Roles.IsUserInRole(patient, "patient"))
+            string patient_name = null;
+            patient_name = getUserNameFromID(userID);
+
+            if (!Roles.IsUserInRole(patient_name, "patient"))
             {
-                return new <BillingRecords>();
+                throw new Exception("You are not a patient");
             }
 
-            string query = "";
+            ///separate patient string into first and last name.
+
+            string query = "SELECT registration.firstname + registration.lastname FROM registration WHERE firstname= " + patient_name;
             List<BillingRecords> records  = getBilling(query);
             if (records.Count < 1)
             {
@@ -114,7 +117,7 @@ namespace Hospital.Providers
         }
         private BillingRecords getBillingRecords(int id)
         {
-            string query = "";
+            string query = "SELECT * FROM Billing WHERE UserID = " + id;
             List<BillingRecords> records = getBilling(query);
             if (records.Count < 1)
             {
@@ -133,7 +136,11 @@ namespace Hospital.Providers
         public bool deleteRecords(int id, bool restrict)
         {
             BillingRecords records = getBillingRecords(id);
-           
+
+            if (!restrict)
+            {
+                return false;
+            }
             string query = String.Format("DELETE FROM billing records WHERE id={0}", records.id);
 
             MySqlConnection connection = new MySqlConnection(connectionString);

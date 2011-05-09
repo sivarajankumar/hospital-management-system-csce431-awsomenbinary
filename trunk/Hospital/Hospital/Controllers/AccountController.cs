@@ -89,7 +89,7 @@ namespace Hospital.Controllers
 
 
         [HttpPost]
-        public ActionResult Register(RegistrationModel model)
+        public ActionResult Register(Registration model)
         {
             if (ModelState.IsValid)
             {
