@@ -44,16 +44,16 @@ namespace Hospital.Providers
         }
 
 
-        public List<RegistrationModel> getRegistration()
+        public List<Registration> getRegistration()
         {
             string query = "";
             return getRegistration(query);
         }
 
 
-        public List<RegistrationModel> getRegistration(string query)
+        public List<Registration> getRegistration(string query)
         {
-            List<RegistrationModel> reg = new List<RegistrationModel>();
+            List<Registration> reg = new List<Registration>();
             MySqlConnection connection = new MySqlConnection(connectionString);
 
             try
@@ -71,7 +71,7 @@ namespace Hospital.Providers
                         int num = response.GetValues(values);
                         if (num == 30)
                         {
-                            RegistrationModel r = new RegistrationModel();
+                            Registration r = new Registration();
                             r.id = (int)values[0];
                             r.username = (String)values[1];
                             r.email = (String)values[2];
@@ -127,11 +127,11 @@ namespace Hospital.Providers
             
         }
 
-        public List<RegistrationModel> getRegistrationForUser(string user)
+        public List<Registration> getRegistrationForUser(string user)
         {
             if (!Roles.IsUserInRole(user, "patient"))
             {
-                return new List<RegistrationModel>();
+                return new List<Registration>();
             }
 
             int user_id = getUserIdFromName(user);
@@ -139,10 +139,10 @@ namespace Hospital.Providers
             return getRegistration(query);
         }
 
-        private RegistrationModel getRegistrationById(int id)
+        private Registration getRegistrationById(int id)
         {
             string query = "";
-            List<RegistrationModel> reg = getRegistration(query);
+            List<Registration> reg = getRegistration(query);
             if (reg.Count < 1)
             {
                 return null;

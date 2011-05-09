@@ -17,30 +17,28 @@ namespace Hospital.Controllers
 
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
             {
                 return redirectToPortal();
             }
-            return View();
+            else
+                return View();
         }
 
-        public ActionResult EditBilling()
+        public ActionResult EditBilling(int id, DateTime date, double amt, string item)
         {
             if (User.IsInRole("Doctor") || User.IsInRole("Nurse") || User.IsInRole("Pharmacist"))
             {
-                svc.EditBilling(id, true);
+               svc.editBillingStatement(id, date, amt, item);
             }
             else
+            {
+                svc.showBillingStatement(id);
+            }
 
-
-                return RedirectToAction("Index");
-        }
-        public ActionResult Edit(String doctor, String specialization, DateTime time)
-        {
-           
             return RedirectToAction("Index");
         }
-
+      
         public ActionResult ShowBilling()
         {
             return View();
