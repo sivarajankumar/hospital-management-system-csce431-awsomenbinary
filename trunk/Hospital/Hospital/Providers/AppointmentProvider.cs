@@ -148,7 +148,7 @@ namespace Hospital.Providers
             return getAppointments(query);
         }
 
-        private Appointment getAppointmentById(int id)
+        public Appointment getAppointmentById(int id)
         {
             string query = "select pat.id, pat.patient, doc.doctor, " +
                               "pat.specialization, pat.time " +

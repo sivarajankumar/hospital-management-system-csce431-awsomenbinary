@@ -53,6 +53,11 @@ namespace Hospital.Models
             return _provider.getAppointmentsForPatient(patient);
         }
 
+        public Appointment getAppointmentById(int id)
+        {
+            return _provider.getAppointmentById(id);
+        }
+
         public void cancelAppointment(int id)
         {
             _provider.cancelAppointment(id);

@@ -12,7 +12,6 @@ namespace Hospital.Controllers
 {
     public class PaymentController : GenericController
     {
-        PaymentRecords pmr = new PaymentRecords();
         PaymentProvider pmp = new PaymentProvider();
 
         
@@ -29,15 +28,6 @@ namespace Hospital.Controllers
 
             return View(Roles.GetUsersInRole("patient"));
         }
-
-        //public ActionResult Index()
-        //{
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        return redirectToPortal();
-        //    }
-        //    return View();
-        //}
 
         
 

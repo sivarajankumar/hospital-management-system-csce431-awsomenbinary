@@ -27,6 +27,12 @@
                 <td><%: a.doctor%></td>
                 <td><%: a.appt_area%></td>
                 <td><%: a.appt_time%></td>
+                <% if (User.IsInRole("Doctor"))
+                   { %>
+                       <td>
+                        <%=Html.ActionLink("Finalize", "Finalize", new { id = a.id }, null)%>
+                       </td>
+                <% } %>
                 <td>
                     <%if (User.IsInRole("Doctor") || DateTime.Compare(a.appt_time, DateTime.Now.AddDays(1)) >= 0)
                       { %>

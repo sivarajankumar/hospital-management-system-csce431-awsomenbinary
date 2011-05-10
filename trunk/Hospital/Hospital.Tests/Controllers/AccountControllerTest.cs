@@ -248,12 +248,9 @@ namespace Hospital.Tests.Controllers
         {
             // Arrange
             AccountController controller = GetAccountController();
-            RegisterModel model = new RegisterModel()
+            Registration model = new Registration()
             {
-                UserName = "someUser",
-                Email = "goodEmail",
-                Password = "goodPassword",
-                ConfirmPassword = "goodPassword"
+                
             };
 
             // Act
@@ -271,12 +268,9 @@ namespace Hospital.Tests.Controllers
         {
             // Arrange
             AccountController controller = GetAccountController();
-            RegisterModel model = new RegisterModel()
+            Registration model = new Registration()
             {
-                UserName = "duplicateUser",
-                Email = "goodEmail",
-                Password = "goodPassword",
-                ConfirmPassword = "goodPassword"
+                
             };
 
             // Act
@@ -295,12 +289,9 @@ namespace Hospital.Tests.Controllers
         {
             // Arrange
             AccountController controller = GetAccountController();
-            RegisterModel model = new RegisterModel()
+            Registration model = new Registration()
             {
-                UserName = "someUser",
-                Email = "goodEmail",
-                Password = "goodPassword",
-                ConfirmPassword = "goodPassword"
+                
             };
             controller.ModelState.AddModelError("", "Dummy error message.");
 
