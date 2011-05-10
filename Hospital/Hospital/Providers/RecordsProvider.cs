@@ -16,11 +16,11 @@ namespace Hospital.Providers
         {
             return getMedicalRecordsForPatient(getUserIdFromName(name));
         }
-        
+
         /*
-        public BillingRecords getBillingRecordsForPatient(String name)
+        public Bill getBillForPatient(String name)
         {
-            return getBillingRecordsForPatient(getUserIdFromName(name));
+            return getBillForPatient(getUserIdFromName(name));
         }
          */
 
@@ -43,122 +43,44 @@ namespace Hospital.Providers
             }
 
             MedicalRecord record = new MedicalRecord();
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            record.prevMedHistory = "Dire fever.";
+            record.currentMedicalHistory = "Clean bill of health!";
+            /*MySqlConnection connection = new MySqlConnection(connectionString);
 
-            //All commented sections in this method relate to the eventual display of previous medical information from Registration
-            /*string query1 = String.Format("SELECT currenthistory FROM Records WHERE id='{0}' LIMIT 1", id);
-            string query2 = String.Format("SELECT operations FROM Registration WHERE id='{0}' LIMIT 1", id);
-            string query3 = String.Format("SELECT allergies FROM Registration WHERE id='{0}' LIMIT 1", id);
-            string query4 = String.Format("SELECT medication FROM Registration WHERE id='{0}' LIMIT 1", id);
-            string query5 = String.Format("SELECT pastdoctor FROM Registration WHERE id='{0}' LIMIT 1", id);
-            string query6 = String.Format("SELECT emergencycontactname FROM Registration WHERE id='{0}' LIMIT 1", id);
-            string query7 = String.Format("SELECT emergencycontactnumber FROM Registration WHERE id='{0}' LIMIT 1", id);
-            string query8 = String.Format("SELECT recenttests FROM Registration WHERE id='{0}' LIMIT 1", id);
-            string query9 = String.Format("SELECT latestbloodpressure FROM Registration WHERE id='{0}' LIMIT 1", id);
-            string query10 = String.Format("SELECT previoushistory FROM Records WHERE id='{0}' LIMIT 1", id);*/
-            
+            string query = String.Format("SELECT currenthistory, operations, allergies, medication , pastdoctor, emergencycontactname, " +
+                                                 "emergencycontactnumber, recenttests, latestbloodpressure, previoushistory " +
+                                                 "FROM Records WHERE id='{0}' LIMIT 1", id);
+
             try
             {
                 connection.Open();
 
-                //MySqlCommand cmd1 = new MySqlCommand(query1, connection);
-                /*MySqlCommand cmd2 = new MySqlCommand(query2, connection);
-                MySqlCommand cmd3 = new MySqlCommand(query3, connection);
-                MySqlCommand cmd4 = new MySqlCommand(query4, connection);
-                MySqlCommand cmd5 = new MySqlCommand(query5, connection);
-                MySqlCommand cmd6 = new MySqlCommand(query6, connection);
-                MySqlCommand cmd7 = new MySqlCommand(query7, connection);
-                MySqlCommand cmd8 = new MySqlCommand(query8, connection);
-                MySqlCommand cmd9 = new MySqlCommand(query9, connection);*/
-               //MySqlCommand cmd10 = new MySqlCommand(query10, connection);
+                MySqlCommand cmd = new MySqlCommand(query, connection);
 
-                //MySqlDataReader response1 = cmd1.ExecuteReader();
-                //MySqlDataReader response10 = cmd10.ExecuteReader();
+                object[] values = new object[11];
+                MySqlDataReader response = cmd.ExecuteReader();
 
-                /*while (response1.Read())
+                while (response.Read())
                 {
-                    record.currentMedicalHistory = response1.GetString(0);
+                    int num = response.GetValues(values);
+                    if (num == values.Length)
+                    {
+                        record.currentMedicalHistory = (string)values[0];
+                        record.prevMedHistory.operations = (string)values[1];
+                        record.prevMedHistory.allergies = (string)values[2];
+                        record.prevMedHistory.ongoingMedication = (string)values[3];
+                        record.prevMedHistory.pastDoctor = (string)values[4];
+                        record.prevMedHistory.familyHistory = (string)values[5];
+                        record.prevMedHistory.emergencyContactName = (string)values[6];
+                        record.prevMedHistory.emergencyContactNumber = (string)values[7];
+                        record.prevMedHistory.recentTests = (string)values[8];
+                        record.prevMedHistory.lastestBloodPressure = (string)values[9];
+                        record.prevMedHistory.other = (string)values[10];
+                    }
                 }
 
-                response1.Close();
-                 MySqlDataReader response2 = cmd2.ExecuteReader();
-
-               while (response2.Read())
-                {
-                    record.prevMedHistory.operations = response2.GetString(0);
-                }
-
-               response2.Close();
-                 MySqlDataReader response3 = cmd3.ExecuteReader();
-
-                while (response3.Read())
-                {
-                    record.prevMedHistory.allergies = response3.GetString(0);
-                }
-
-                response3.Close();
-                 MySqlDataReader response4 = cmd4.ExecuteReader();
-
-                while (response4.Read())
-                {
-                    record.prevMedHistory.ongoingMedication = response4.GetString(0);
-                }
-
-                response4.Close();
-                 MySqlDataReader response5 = cmd5.ExecuteReader();
-
-                while (response5.Read())
-                {
-                    record.prevMedHistory.pastDoctor = response5.GetString(0);
-                }
-
-                response5.Close();
-                 MySqlDataReader response6 = cmd6.ExecuteReader();
-
-                while (response6.Read())
-                {
-                    record.prevMedHistory.familyHistory = response6.GetString(0);
-                }
-
-                response6.Close();
-                 MySqlDataReader response7 = cmd7.ExecuteReader();
-
-                while (response7.Read())
-                {
-                    record.prevMedHistory.emergencyContactName = response7.GetString(0);
-                }
-
-                response7.Close();
-                 MySqlDataReader response8 = cmd8.ExecuteReader();
-
-                while (response8.Read())
-                {
-                    record.prevMedHistory.emergencyContactNumber = response8.GetString(0);
-                }
-
-                response8.Close();
-                 MySqlDataReader response9 = cmd9.ExecuteReader();
-
-                while (response9.Read())
-                {
-                    record.prevMedHistory.lastestBloodPressure = response9.GetString(0);
-                }
-
-                response9.Close();
-                 MySqlDataReader response10 = cmd10.ExecuteReader();
-
-                while (response10.Read())
-                {
-                    record.prevMedHistory.other = response10.GetString(0);
-                }
-
-                response10.Close();*/
-
-               record.currentMedicalHistory = "December 2010 - came in complaining of stomach pain";
-               record.prevMedHistory = "June 1999 - broke both legs";
-                
-                //record.prescriptions.Add("Nasonex");
-                //record.prescriptions.Add("Zoloft");
+                record.prescriptions.Add("Nasonex");
+                record.prescriptions.Add("Zoloft");
             }
             catch (Exception e)
             {
@@ -167,10 +89,10 @@ namespace Hospital.Providers
             finally
             {
                 connection.Close();
-            }
+            }*/
 
-                return record;
-            
+            return record;
+
         }
 
         public void updateMedicalRecordsForPatient(String patient, MedicalRecord newRecords)
@@ -188,7 +110,7 @@ namespace Hospital.Providers
             //try
             //{
             //    connection.Open();
-        
+
 
             //    MySqlCommand addUser = new MySqlCommand(query, connection);
             //    addUser.ExecuteNonQuery();
@@ -203,9 +125,9 @@ namespace Hospital.Providers
             //}
         }
         /*
-        public BillingRecords getBillingRecordsForPatient(int id)
+        public Bill getBillForPatient(int id)
         {
-            BillingRecords record = new BillingRecords();
+            Bill record = new Bill();
             if (id > 0)
             {
                 record.Date = DateTime.Today;

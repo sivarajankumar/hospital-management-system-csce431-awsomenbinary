@@ -18,7 +18,14 @@ namespace Hospital.Controllers
         {
           if (!User.IsInRole("Doctor"))
           {
-            MedicalRecord model = svc.getMedicalRecordsForPatient(User.Identity.Name);
+            MedicalRecord model = new MedicalRecord();
+            //model.prescriptions = new List<string>();
+            try
+            {
+                model = svc.getMedicalRecordsForPatient(User.Identity.Name);
+            }
+            catch(Exception){
+            }
             return View("Medical", model);
           }
           
@@ -37,17 +44,33 @@ namespace Hospital.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Doctor")]
+        [Authorize(Roles = "Doctor, Patient")]
         public ActionResult Edit(String patient)
         {
+            if (User.IsInRole("Patient"))
+            {
+              patient = User.Identity.Name;
+            }
             ViewData["patient"] = patient;
-            MedicalRecord model = svc.getMedicalRecordsForPatient(patient);
+            MedicalRecord model = new MedicalRecord();
+            //model.prescriptions = new List<string>();
+            try
+            {
+                model = svc.getMedicalRecordsForPatient(patient);
+            }
+            catch (Exception)
+            {
+            }
             return View(model);
         }
 
-        [Authorize(Roles = "Doctor")]
+        [Authorize(Roles = "Doctor, Patient")]
         public ActionResult Update(String patient)
         {
+            if (User.IsInRole("Patient"))
+            {
+              patient = User.Identity.Name;
+            }
             MedicalRecord model = svc.getMedicalRecordsForPatient(patient);
 
             //Only the patient should be able to update their Previous Medical History

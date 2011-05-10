@@ -14,18 +14,39 @@ namespace Hospital.Models
 {
 
     #region models
-    public class PaymentRecords
+    public class Payment
     {
-        public int DocID { get; set; }
-        public String AptType {get; set;}
-        public double PayRate { get; set; }
-        public int Hours { get; set; }
-        public String ForText { get; set; }
-        public DateTime PayDate { get; set; }
-         
+        public int id { get; set; }
+        public string doctor { get; set; }
+        public string type { get; set; }
+        public double pay_rate { get; set; }
+        public double hours { get; set; }
+        public string for_text { get; set; }
+        public DateTime pay_date { get; set; }
 
     }
 
     #endregion
 
-}
+    #region services
+    public class PaymentProviderService{
+      private readonly PaymentProvider _provider;
+
+        public PaymentProviderService() : this(null)
+        {
+        }
+
+        public PaymentProviderService(PaymentProvider provider)
+        {
+            _provider = provider ?? new PaymentProvider();
+        }
+
+        public void makePayment(Payment p)
+        {
+            _provider.makePayment(p);
+        }
+    }
+
+    #endregion
+
+  }

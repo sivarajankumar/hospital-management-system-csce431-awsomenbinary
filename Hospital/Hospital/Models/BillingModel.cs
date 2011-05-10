@@ -24,7 +24,7 @@ namespace Hospital.Models
     }
 
        #endregion
-    public class BillingServices
+    public class BillingProviderService
     {
         private readonly BillingProvider _provider;
 
