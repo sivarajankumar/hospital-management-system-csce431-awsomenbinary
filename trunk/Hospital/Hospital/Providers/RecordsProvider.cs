@@ -45,7 +45,8 @@ namespace Hospital.Providers
             MedicalRecord record = new MedicalRecord();
             MySqlConnection connection = new MySqlConnection(connectionString);
 
-            string query1 = String.Format("SELECT currenthistory FROM Records WHERE id='{0}' LIMIT 1", id);
+            //All commented sections in this method relate to the eventual display of previous medical information from Registration
+            /*string query1 = String.Format("SELECT currenthistory FROM Records WHERE id='{0}' LIMIT 1", id);
             string query2 = String.Format("SELECT operations FROM Registration WHERE id='{0}' LIMIT 1", id);
             string query3 = String.Format("SELECT allergies FROM Registration WHERE id='{0}' LIMIT 1", id);
             string query4 = String.Format("SELECT medication FROM Registration WHERE id='{0}' LIMIT 1", id);
@@ -54,91 +55,110 @@ namespace Hospital.Providers
             string query7 = String.Format("SELECT emergencycontactnumber FROM Registration WHERE id='{0}' LIMIT 1", id);
             string query8 = String.Format("SELECT recenttests FROM Registration WHERE id='{0}' LIMIT 1", id);
             string query9 = String.Format("SELECT latestbloodpressure FROM Registration WHERE id='{0}' LIMIT 1", id);
-            string query10 = String.Format("SELECT previoushistory FROM Records WHERE id='{0}' LIMIT 1", id);
+            string query10 = String.Format("SELECT previoushistory FROM Records WHERE id='{0}' LIMIT 1", id);*/
             
             try
             {
                 connection.Open();
 
-                MySqlCommand cmd1 = new MySqlCommand(query1, connection);
-                MySqlCommand cmd2 = new MySqlCommand(query2, connection);
+                //MySqlCommand cmd1 = new MySqlCommand(query1, connection);
+                /*MySqlCommand cmd2 = new MySqlCommand(query2, connection);
                 MySqlCommand cmd3 = new MySqlCommand(query3, connection);
                 MySqlCommand cmd4 = new MySqlCommand(query4, connection);
                 MySqlCommand cmd5 = new MySqlCommand(query5, connection);
                 MySqlCommand cmd6 = new MySqlCommand(query6, connection);
                 MySqlCommand cmd7 = new MySqlCommand(query7, connection);
                 MySqlCommand cmd8 = new MySqlCommand(query8, connection);
-                MySqlCommand cmd9 = new MySqlCommand(query9, connection);
-                MySqlCommand cmd10 = new MySqlCommand(query10, connection);
+                MySqlCommand cmd9 = new MySqlCommand(query9, connection);*/
+               //MySqlCommand cmd10 = new MySqlCommand(query10, connection);
 
-                MySqlDataReader response1 = cmd1.ExecuteReader();
-                MySqlDataReader response2 = cmd2.ExecuteReader();
-                MySqlDataReader response3 = cmd3.ExecuteReader();
-                MySqlDataReader response4 = cmd4.ExecuteReader();
-                MySqlDataReader response5 = cmd5.ExecuteReader();
-                MySqlDataReader response6 = cmd6.ExecuteReader();
-                MySqlDataReader response7 = cmd7.ExecuteReader();
-                MySqlDataReader response8 = cmd8.ExecuteReader();
-                MySqlDataReader response9 = cmd9.ExecuteReader();
-                MySqlDataReader response10 = cmd10.ExecuteReader();
+                //MySqlDataReader response1 = cmd1.ExecuteReader();
+                //MySqlDataReader response10 = cmd10.ExecuteReader();
 
-                while (response1.Read())
+                /*while (response1.Read())
                 {
                     record.currentMedicalHistory = response1.GetString(0);
                 }
 
-                while (response2.Read())
+                response1.Close();
+                 MySqlDataReader response2 = cmd2.ExecuteReader();
+
+               while (response2.Read())
                 {
-                    record.prevMedHistory.operations = response2.GetString(0); ;
+                    record.prevMedHistory.operations = response2.GetString(0);
                 }
+
+               response2.Close();
+                 MySqlDataReader response3 = cmd3.ExecuteReader();
 
                 while (response3.Read())
                 {
-                    record.prevMedHistory.allergies = response3.GetString(0); ;
+                    record.prevMedHistory.allergies = response3.GetString(0);
                 }
+
+                response3.Close();
+                 MySqlDataReader response4 = cmd4.ExecuteReader();
 
                 while (response4.Read())
                 {
-                    record.prevMedHistory.ongoingMedication = response4.GetString(0); ;
+                    record.prevMedHistory.ongoingMedication = response4.GetString(0);
                 }
+
+                response4.Close();
+                 MySqlDataReader response5 = cmd5.ExecuteReader();
 
                 while (response5.Read())
                 {
-                    record.prevMedHistory.pastDoctor = response5.GetString(0); ;
+                    record.prevMedHistory.pastDoctor = response5.GetString(0);
                 }
+
+                response5.Close();
+                 MySqlDataReader response6 = cmd6.ExecuteReader();
 
                 while (response6.Read())
                 {
-                    record.prevMedHistory.familyHistory = response6.GetString(0); ;
+                    record.prevMedHistory.familyHistory = response6.GetString(0);
                 }
+
+                response6.Close();
+                 MySqlDataReader response7 = cmd7.ExecuteReader();
 
                 while (response7.Read())
                 {
-                    record.prevMedHistory.emergencyContactName = response7.GetString(0); ;
+                    record.prevMedHistory.emergencyContactName = response7.GetString(0);
                 }
+
+                response7.Close();
+                 MySqlDataReader response8 = cmd8.ExecuteReader();
 
                 while (response8.Read())
                 {
-                    record.prevMedHistory.emergencyContactNumber = response8.GetString(0); ;
+                    record.prevMedHistory.emergencyContactNumber = response8.GetString(0);
                 }
 
-                while (response1.Read())
-                {
-                    record.prevMedHistory.recentTests = "";
-                }
+                response8.Close();
+                 MySqlDataReader response9 = cmd9.ExecuteReader();
 
                 while (response9.Read())
                 {
-                    record.prevMedHistory.lastestBloodPressure = response9.GetString(0); ;
+                    record.prevMedHistory.lastestBloodPressure = response9.GetString(0);
                 }
+
+                response9.Close();
+                 MySqlDataReader response10 = cmd10.ExecuteReader();
 
                 while (response10.Read())
                 {
-                    record.prevMedHistory.other = response10.GetString(0); ;
+                    record.prevMedHistory.other = response10.GetString(0);
                 }
 
-                record.prescriptions.Add("Nasonex");
-                record.prescriptions.Add("Zoloft");
+                response10.Close();*/
+
+               record.currentMedicalHistory = "December 2010 - came in complaining of stomach pain";
+               record.prevMedHistory = "June 1999 - broke both legs";
+                
+                //record.prescriptions.Add("Nasonex");
+                //record.prescriptions.Add("Zoloft");
             }
             catch (Exception e)
             {

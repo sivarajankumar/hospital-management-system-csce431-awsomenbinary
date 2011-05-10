@@ -61,11 +61,11 @@ namespace Hospital.Controllers
                 model.currentMedicalHistory = Request.Form["curentMedicalHistory"];
             }
             
-            if (!String.IsNullOrEmpty(Request.Form["prescriptions"]))
+            /*if (!String.IsNullOrEmpty(Request.Form["prescriptions"]))
             {
                 String[] separated = Request.Form["prescriptions"].Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 model.prescriptions = new List<String>(separated);
-            }
+            }*/
 
             svc.updateMedicalecordsForPatient(patient, model);
             return RedirectToAction("Medical", "Records", new { patient = patient });
@@ -77,7 +77,7 @@ namespace Hospital.Controllers
                 MedicalRecord model = svc.getMedicalRecordsForPatient(patient);
                 if (!String.IsNullOrEmpty(Request.Form["previousMedicalHistory"]))
                 {
-                    model.prevMedHistory.other = Request.Form["previousMedicalHistory"];
+                    model.prevMedHistory = Request.Form["previousMedicalHistory"];
                 }
                 svc.updateMedicalecordsForPatient(patient, model);
                 return RedirectToAction("Medical", "Records", new { patient = patient });

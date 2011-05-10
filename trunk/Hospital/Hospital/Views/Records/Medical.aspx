@@ -19,22 +19,10 @@
             <li>
                 Previous Medical History: <br />
                 <p id="previousMedicalHistory">
-                    <%: Model.previousMedicalHistory %>
+                    <%: Model.prevMedHistory %>
                 </p>
             </li>
-            <li>
-                Prescriptions: <br />
-                <div id="prescriptions">
-                    <ul>
-                        <% foreach (var p in Model.prescriptions){ %>
-                            <li><%: p %></li>
-                        <% } %>
-                    </ul>
-                    
 
-
-                </div>
-            </li>
         </ul>
     </div>
     
