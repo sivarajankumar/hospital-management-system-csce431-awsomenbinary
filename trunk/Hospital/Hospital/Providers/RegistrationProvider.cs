@@ -11,7 +11,6 @@ namespace Hospital.Providers
     public sealed class RegistrationProvider : BaseProvider
     {
 
-
         public void registerUser(string user, string email, string password, string firstname, string middleinital, string lastname, string age, string sex, string mailingaddress, string phonenumber, string creditcardname, string creditcardtype, string creditcardnumber, string creditcardsecuritynumber, string insurancecompany, string insurancepolicynumber, string insurancepolicyholder, string martialstatus, string ssn, string dob, string operations, string allergies, string medication, string pastdoctor, string familyhistory, string emergencycontactname, string emergencycontactnumber, string recenttests, string latestbloodpressure)
         {
             int user_id = getUserIdFromName(user);
@@ -46,7 +45,8 @@ namespace Hospital.Providers
 
         public List<Registration> getRegistration()
         {
-            string query = "";
+            Registration r = new Registration();
+            string query = "SELECT * FROM Registration WHERE user_id="+r.id;
             return getRegistration(query);
         }
 
@@ -135,13 +135,13 @@ namespace Hospital.Providers
             }
 
             int user_id = getUserIdFromName(user);
-            string query = "";
+            string query = "SELECT * FROM Registration WHERE user_id="+user_id;
             return getRegistration(query);
         }
 
-        private Registration getRegistrationById(int id)
+        public Registration getRegistrationById(int id)
         {
-            string query = "";
+            string query = "SELECT * FROM Registration WHERE id="+id;
             List<Registration> reg = getRegistration(query);
             if (reg.Count < 1)
             {
@@ -150,9 +150,6 @@ namespace Hospital.Providers
             return reg[0];
         }
 
-        public void changeRegistration()
-        {
-        }
 
 
 
