@@ -9,44 +9,88 @@ using System.Configuration.Provider;
 
 namespace Hospital.Providers
 {
-    public class PaymentProvider
+    public sealed class PaymentProvider: BaseProvider
     {
 
-       /* public void makePayment()
+        public void makePayment()
         {
 
             List<PaymentRecords> records = new List<PaymentRecords>();
+            List<PaymentRecords> Payments = new List<PaymentRecords>();
 
             MySqlConnection connection = new MySqlConnection(connectionString);
             double pay;
             try
             {
+
+                string query = "Payment information(UserId, BillTotal, Item) " +
+                String.Format("VALUES ({0}, '{2:yyyy-MM-dd}', '{3}', '{4}')", UserId, Date, BillTotal, Item);
                 connection.Open();
                 MySqlCommand verifyUser = new MySqlCommand(query, connection);
                 verifyUser.ExecuteNonQuery();
 
-                object[] values = new object[5];
+                object[] values = new object[6];
                 MySqlDataReader response = verifyUser.ExecuteReader();
                 try
                 {
                     while (response.Read())
                     {
                         int num = response.GetValues(values);
-                        if (num == 5)
+                        if (num == 6)
                         {
                             PaymentRecords r = new PaymentRecords();
-                            r.UserID = (int)values[0];
-                            r.PayRate = (double)values[1];
-                            r.Hours = (int)values[2];
-                            r.SurgeryRate = (double)values[3];
-                            r.SurgeryHours = (int)values[4];
+                            r.DocID = (int)values[0];
+                            r.AptType = (String)values[1];
+                            r.PayRate = (double)values[2];
+                            r.Hours = (int)values[3];
+                            r.ForText = (String)values[4];
+                            r.PayDate = (DateTime)values[5];
 
-                            pay = (r.PayRate * r.Hours) + (r.SurgeryRate * r.SurgeryHours);
+                            DateTime today = DateTime.now;
+
+                            if (today.Day == PayDate.Day && today.month == PayDate.month)
+                            {
+                                records.Add(r);
+
+                            }
                             
 
                         }
 
                     }
+
+                    for (int i = 1; i < records.Count; i++)
+                    {
+                        Payments.Add(records[0].DocID);
+                        Payments.Add(records[0].PayRate*records[0].Hours);
+
+                        for (int j = 0; j < Payments.Count; j++)
+                        {
+                            if (records[i].DocID == Payments[j * 2])
+                            {
+                                Payments[j * 2 + 1] += (records[0].PayRate * records[0].Hours);
+
+                            }
+                            else
+                            {
+                                Payments.Add(records[i].DocID);
+                                Payments.Add(records[i].PayRate * records[i].Hours);
+
+                            }
+
+                        }
+
+
+                    }
+
+                    for (int i = 0; i < Payments.Count / 2; i++)
+                    {
+                        Pay(Payments[2*i],Payments[2*i+1];
+                    }
+
+
+
+
                 }
                 finally
                 {
@@ -61,10 +105,18 @@ namespace Hospital.Providers
             {
                 connection.Close();
             }
-            return records;
+ 
         }
 
-        */
+
+        public void Pay(int DocID, double amount)
+        {
+            //Add to Pay Database
+
+
+        }
+
+        
 
 
     }
