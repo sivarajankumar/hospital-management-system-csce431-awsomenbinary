@@ -14,7 +14,7 @@ namespace Hospital.Tests.Controllers
 
     [TestClass]
     public class AccountControllerTest
-    {
+    {/*
 
         [TestMethod]
         public void ChangePassword_Get_ReturnsView()
@@ -352,7 +352,7 @@ namespace Hospital.Tests.Controllers
 
         private class MockHttpContext : HttpContextBase
         {
-            private readonly IPrincipal _user = new GenericPrincipal(new GenericIdentity("someUser"), null /* roles */);
+            private readonly IPrincipal _user = new GenericPrincipal(new GenericIdentity("someUser"), null /* roles *//*);
 
             public override IPrincipal User
             {
@@ -400,6 +400,6 @@ namespace Hospital.Tests.Controllers
                 return (userName == "someUser" && oldPassword == "goodOldPassword" && newPassword == "goodNewPassword");
             }
         }
-
+        */
     }
 }

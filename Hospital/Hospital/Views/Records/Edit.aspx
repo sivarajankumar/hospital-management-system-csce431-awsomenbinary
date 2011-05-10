@@ -11,26 +11,17 @@
     <% using (Html.BeginForm("Update", "Records", new { patient = ViewData["patient"] }))
        {%>
         <table>
-            <tr>
+
+             <tr>
                 <td><b>Medical History:</b></td></tr><tr><td></td>
-                <td><%= Html.TextArea("previousMedicalHistory", Model.previousMedicalHistory, new { style = "width:500px;height:200px" })%></td>
+                <td><%= Html.TextArea("previousMedicalHistory", Model.prevMedHistory, new { style = "width:500px;height:200px" })%></td>
             </tr>
 
             <tr>
                 <td><b>Current medical History:</b></td></tr><tr><td></td>
             <td><%= Html.TextArea("currentMedicalHistory", Model.currentMedicalHistory, new { style = "width:500px;height:200px" })%></td>
             </tr>
-            <tr>
-                <td><b>Prescriptions <br />(separate by a new line):</b></td></tr><tr><td></td>
-            <td><%
-        String prescriptions = "";
-        foreach (String p in Model.prescriptions)
-        {
-            prescriptions += p + "\n";
-        }
-            %>
-            <%=Html.TextArea("prescriptions", prescriptions, new { style = "width:500px;height:200px" })%></td>
-            </tr>
+
         </table>
 
         <input type="submit" value="Save" />

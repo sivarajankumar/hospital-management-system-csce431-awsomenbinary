@@ -15,29 +15,16 @@ namespace Hospital.Models
     #region models
     public class MedicalRecord
     {
-        public previousMedicalHistory prevMedHistory { get; set; }
+        public String prevMedHistory { get; set; }
         public String currentMedicalHistory { get; set; }
-        public List<String> prescriptions { get; set; }
-
-        public class previousMedicalHistory
-        {
-            public String operations { get; set; }
-            public String allergies { get; set; }
-            public String ongoingMedication { get; set; }
-            public String pastDoctor { get; set; }
-            public String familyHistory { get; set; }
-            public String emergencyContactName { get; set; }
-            public String emergencyContactNumber { get; set; }
-            public String recentTests { get; set; }
-            public String lastestBloodPressure { get; set; }
-            public String other { get; set; }
-        }
+        
+        /*public List<prescription> prescriptions { get; set; }
 
         public class prescription
         {
             public String rxName { get; set; }
             public bool filled { get; set; }
-        }
+        }*/
     }
     #endregion
 
