@@ -133,7 +133,7 @@ namespace Hospital.Models
         }
 
 
-        public List<Registration> getRegistrationForUser(string user)
+        public Registration getRegistrationForUser(string user)
         {
             return _provider.getRegistrationForUser(user);
         }
