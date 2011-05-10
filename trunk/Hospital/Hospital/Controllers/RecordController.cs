@@ -53,41 +53,35 @@ namespace Hospital.Controllers
             //Only the patient should be able to update their Previous Medical History
             /*if (!String.IsNullOrEmpty(Request.Form["previousMedicalHistory"]))
             {
-                model.previousMedicalHistory = Request.Form["previousMedicalHistory"];
+                model.prevMedHistory.other = Request.Form["previousMedicalHistory"];
             }*/
 
             if (!String.IsNullOrEmpty(Request.Form["currentMedicalHistory"]))
             {
-                model.previousMedicalHistory = Request.Form["curentMedicalHistory"];
+                model.currentMedicalHistory = Request.Form["curentMedicalHistory"];
             }
-            if (!String.IsNullOrEmpty(Request.Form["prescriptions"]))
+            
+            /*if (!String.IsNullOrEmpty(Request.Form["prescriptions"]))
             {
                 String[] separated = Request.Form["prescriptions"].Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                model.prescriptions = new List<String>(separated);
-            }
+                //model.prescriptions = new List<String>(separated);
+            }*/
+
             svc.updateMedicalecordsForPatient(patient, model);
             return RedirectToAction("Medical", "Records", new { patient = patient });
         }
 
-        /*[Authorize(Roles = "Patient")]
+        [Authorize(Roles = "Patient")]
         public ActionResult UpdatePrev(String patient)
         {
-            if(User.name == patient)
-            {
                 MedicalRecord model = svc.getMedicalRecordsForPatient(patient);
-                if (!String.IsNullOrEmpty(Requests.Form["previousMedicalHistory"]))
+                if (!String.IsNullOrEmpty(Request.Form["previousMedicalHistory"]))
                 {
-                    model.previousMedicalHistory = Request.Form["previousMedicalHistory"];
+                    model.prevMedHistory.other = Request.Form["previousMedicalHistory"];
                 }
                 svc.updateMedicalecordsForPatient(patient, model);
                 return RedirectToAction("Medical", "Records", new { patient = patient });
-            }
-         
-           else
-           {
-                //Error Message: User does not have permission to view this page
-           }
-        }*/
+        }
 
         [Authorize(Roles = "Pharmacist")]
         public ActionResult fillRx(String patient)
