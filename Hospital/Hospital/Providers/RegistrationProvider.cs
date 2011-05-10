@@ -127,16 +127,19 @@ namespace Hospital.Providers
             
         }
 
-        public List<Registration> getRegistrationForUser(string user)
+        public Registration getRegistrationForUser(string user)
         {
             if (!Roles.IsUserInRole(user, "patient"))
             {
-                return new List<Registration>();
+                return new Registration();
             }
 
             int user_id = getUserIdFromName(user);
             string query = "SELECT * FROM Registration WHERE user_id="+user_id;
-            return getRegistration(query);
+            List<Registration> r = getRegistration(query);
+            if (r.Count < 1) return null;
+
+            return r[0];
         }
 
         public Registration getRegistrationById(int id)
