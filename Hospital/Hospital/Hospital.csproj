@@ -91,6 +91,7 @@
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Controllers\RecordController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />

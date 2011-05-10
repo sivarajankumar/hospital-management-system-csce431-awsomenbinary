@@ -11,8 +11,22 @@ namespace Hospital.Controllers
 {
     public class PaymentController : GenericController
     {
+        PaymentRecords pmr = new PaymentRecords();
+
         //
         // GET: /Payment/
+
+        //[Authorize]
+        //public ActionResult Index()
+        //{
+        //    if (!User.IsInRole("Doctor"))
+        //    {
+        //        PaymentRecords model = pmr.makePayment();
+        //        return View("Medical", model);
+        //    }
+
+        //    return View(Roles.GetUsersInRole("patient"));
+        //}
 
         public ActionResult Index()
         {
