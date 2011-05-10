@@ -17,7 +17,7 @@ namespace Hospital.Models
     {
         public previousMedicalHistory prevMedHistory { get; set; }
         public String currentMedicalHistory { get; set; }
-        public List<prescription> prescriptions { get; set; }
+        public List<String> prescriptions { get; set; }
 
         public class previousMedicalHistory
         {

@@ -24,6 +24,17 @@ namespace Hospital.Providers
         }
          */
 
+        /*public MedicalRecord getPrescriptions(int id)
+        {
+            if (id > 0)
+            {
+                MedicalRecord prescriptions = new MedicalRecord()
+                
+            }
+
+            return prescriptions;
+        }*/
+
         public MedicalRecord getMedicalRecordsForPatient(int id)
         {
             if (id < 0)
@@ -125,9 +136,9 @@ namespace Hospital.Providers
                 {
                     record.prevMedHistory.other = response10.GetString(0); ;
                 }
-                
 
-                
+                record.prescriptions.Add("Nasonex");
+                record.prescriptions.Add("Zoloft");
             }
             catch (Exception e)
             {
