@@ -13,7 +13,7 @@ using Hospital.Providers;
 namespace Hospital.Models
 {
     #region models
-    public class RegistrationModel
+    public class Registration
     {
         public int id{get;set;}
         [Required]
@@ -127,19 +127,23 @@ namespace Hospital.Models
             _provider.registerUser(user, email, password, firstname, middleinital, lastname, age, sex, mailingaddress, phonenumber, creditcardname, creditcardtype, creditcardnumber, creditcardsecuritynumber, insurancecompany, insurancepolicynumber, insurancepolicyholder, martialstatus, ssn, dob, operations, allergies, medication, pastdoctor, familyhistory, emergencycontactname, emergencycontactnumber, recenttests, latestbloodpressure);
         }
 
-        public List<RegistrationModel> getRegistration()
+        public List<Registration> getRegistration()
         {
             return _provider.getRegistration();
         }
 
-        public List<RegistrationModel> getRegistration(string user)
+
+        public List<Registration> getRegistrationForUser(string user)
         {
             return _provider.getRegistrationForUser(user);
         }
 
-        public void changeRegistration()
+
+        public Registration getRegistrationById(int user_id)
         {
+            return _provider.getRegistrationById(user_id);
         }
+
 
     }
     #endregion
