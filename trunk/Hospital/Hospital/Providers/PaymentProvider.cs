@@ -12,14 +12,14 @@ namespace Hospital.Providers
     public sealed class PaymentProvider: BaseProvider
     {
 
-        public void makePayment(int docID)
+        public double makePayment(int docID)
         {
 
             List<PaymentRecords> records = new List<PaymentRecords>();
         
 
             MySqlConnection connection = new MySqlConnection(connectionString);
-            double pay;
+            double payment=0;
             try
             {
 
@@ -28,7 +28,7 @@ namespace Hospital.Providers
                 connection.Open();
                 MySqlCommand verifyUser = new MySqlCommand(query, connection);
                 verifyUser.ExecuteNonQuery();
-                double pay = 0;
+                
 
                 object[] values = new object[3];
                 MySqlDataReader response = verifyUser.ExecuteReader();
@@ -52,7 +52,7 @@ namespace Hospital.Providers
                     for (int i = 1; i < records.Count; i++)
                     {
                        
-                        pay+=(records[0].PayRate*records[0].Hours);
+                        payment+=(records[0].PayRate*records[0].Hours);
 
                         
                     }
@@ -75,7 +75,7 @@ namespace Hospital.Providers
                 connection.Close();
             }
 
-            return pay;
+            return payment;
         }
 
 

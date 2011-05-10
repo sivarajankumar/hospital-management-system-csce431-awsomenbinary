@@ -6,36 +6,38 @@ using System.Web.Mvc;
 using Hospital.Models;
 using System.Web.Security;
 using Microsoft.CSharp;
+using Hospital.Providers;
 
 namespace Hospital.Controllers
 {
     public class PaymentController : GenericController
     {
         PaymentRecords pmr = new PaymentRecords();
+        PaymentProvider pmp = new PaymentProvider();
 
-        //
-        // GET: /Payment/
+        
+         //GET: /Payment/
 
-        //[Authorize]
-        //public ActionResult Index()
-        //{
-        //    if (!User.IsInRole("Doctor"))
-        //    {
-        //        PaymentRecords model = pmr.makePayment();
-        //        return View("Medical", model);
-        //    }
-
-        //    return View(Roles.GetUsersInRole("patient"));
-        //}
-
+        [Authorize]
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
+            //if (!User.IsInRole("Doctor"))
             {
-                return redirectToPortal();
+                //ViewData["total_payment"] = pmp.makePayment();
+                
             }
-            return View();
+
+            return View(Roles.GetUsersInRole("patient"));
         }
+
+        //public ActionResult Index()
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        return redirectToPortal();
+        //    }
+        //    return View();
+        //}
 
         
 
