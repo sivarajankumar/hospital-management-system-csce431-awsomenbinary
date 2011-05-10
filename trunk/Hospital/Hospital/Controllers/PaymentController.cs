@@ -93,6 +93,8 @@ namespace Hospital.Controllers
             return View();
         }
 
+
+
         //
         // POST: /Payment/Delete/5
 

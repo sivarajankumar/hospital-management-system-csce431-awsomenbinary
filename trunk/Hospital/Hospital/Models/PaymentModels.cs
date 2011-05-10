@@ -16,11 +16,13 @@ namespace Hospital.Models
     #region models
     public class PaymentRecords
     {
-        public int UserID { get; set; }
+        public int DocID { get; set; }
+        public String AptType {get; set;}
         public double PayRate { get; set; }
         public int Hours { get; set; }
-        public double SurgeryRate { get; set; }
-        public int SurgeryHours { get; set; }
+        public String ForText { get; set; }
+        public DateTime PayDate { get; set; }
+         
 
     }
 
