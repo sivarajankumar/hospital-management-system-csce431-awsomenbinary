@@ -1,0 +1,1 @@
+Online hospital management system used by patients, doctors and other hospital staff to use the services provided by the hospital.
